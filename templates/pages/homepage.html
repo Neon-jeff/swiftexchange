@@ -17,7 +17,7 @@
 
       <a
         href="{%url 'sign-up'%}"
-        class="bg-cyan-600 text-white px-5 py-3 rounded-full mt-10 w-fit block"
+        class="bg-main text-white px-5 py-3 rounded-full mt-10 w-fit block"
         >Join us now <i class="ri-arrow-right-up-line"></i
       ></a>
     </div>
@@ -27,7 +27,7 @@
         <img
           src="/static/images/hero.png"
           alt=""
-          class="mix-blend-multiply scale-125"
+          class="mix-blend-multiply scale-125 max-md:hidden"
         />
       </div>
     </div>
@@ -46,25 +46,21 @@
       <div
         class="flex flex-col gap-3 max-md:p-0 max-md:items-center max-md:text-center"
       >
-        <span class="text-4xl max-sm:text-3xl ma font-bold text-cyan-600"
-          >27K</span
-        >
+        <span class="text-4xl max-sm:text-3xl ma font-bold text-main">27K</span>
         <span>Registered Users</span>
       </div>
       <div
         class="flex flex-col gap-3 pl-5 max-md:p-0 max-md:items-center max-md:text-center"
       >
-        <span class="text-4xl max-sm:text-3xl ma font-bold text-cyan-600"
-          >190+</span
+        <span class="text-4xl max-sm:text-3xl ma font-bold text-main"
+          >197+</span
         >
         <span>Countries supported worldwide</span>
       </div>
       <div
         class="flex flex-col gap-3 pl-5 max-md:p-0 max-md:items-center max-md:text-center"
       >
-        <span class="text-4xl max-sm:text-3xl ma font-bold text-cyan-600"
-          >10+</span
-        >
+        <span class="text-4xl max-sm:text-3xl ma font-bold text-main">10+</span>
         <span>Trading Currencies</span>
       </div>
     </div>
@@ -84,28 +80,28 @@
         </h1>
         <div class="p-5 rounded-xl border border-neutral-200">
           <span
-            class="w-10 h-10 flex rounded-full items-center mb-3 justify-center text-cyan-600 font-bold border border-cyan-600"
+            class="w-10 h-10 flex rounded-full items-center mb-3 justify-center text-main font-bold border border-main"
             >1</span
           >
           <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</span>
         </div>
         <div class="p-5 rounded-xl border border-neutral-200">
           <span
-            class="w-10 h-10 flex rounded-full items-center mb-3 justify-center text-cyan-600 font-bold border border-cyan-600"
+            class="w-10 h-10 flex rounded-full items-center mb-3 justify-center text-main font-bold border border-main"
             >2</span
           >
           <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</span>
         </div>
         <div class="p-5 rounded-xl border border-neutral-200">
           <span
-            class="w-10 h-10 flex rounded-full items-center mb-3 justify-center text-cyan-600 font-bold border border-cyan-600"
+            class="w-10 h-10 flex rounded-full items-center mb-3 justify-center text-main font-bold border border-main"
             >3</span
           >
           <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</span>
         </div>
         <a
           href="{%url 'sign-up'%}"
-          class="bg-cyan-600 text-white px-5 py-3 rounded-full mt-5 w-fit block mx-auto"
+          class="bg-main text-white px-5 py-3 rounded-full mt-5 w-fit block mx-auto"
           >Join us now <i class="ri-arrow-right-up-line"></i
         ></a>
       </div>
@@ -135,7 +131,7 @@
     </div>
     <a
       href="{%url 'sign-up'%}"
-      class="bg-cyan-600 text-white px-5 py-3 rounded-full mt-5 w-fit block mx-auto"
+      class="bg-main text-white px-5 py-3 rounded-full mt-5 w-fit block mx-auto"
       >Start Trading Crypto<i class="ri-arrow-right-up-line"></i
     ></a>
   </div>
@@ -157,13 +153,13 @@
             alt=""
           />
           <span x-text="currency.currency"></span>
-          <span x-text="currency.rate" class="font-bold text-cyan-600"></span>
+          <span x-text="currency.rate" class="font-bold text-main"></span>
         </div>
       </template>
     </div>
     <a
       href="{%url 'sign-up'%}"
-      class="bg-cyan-600 text-white px-5 py-3 rounded-full mt-5 w-fit mx-auto block"
+      class="bg-main text-white px-5 py-3 rounded-full mt-5 w-fit mx-auto block"
       >Market Trends<i class="ri-arrow-right-up-line"></i
     ></a>
   </div>
@@ -171,13 +167,11 @@
 
   <!-- copy trader explained -->
   <div
-    class="py-10 px-10 max-md:px-5 flex max-sm:flex-col relative items-center max-md:gap-10 gap-20 justify-center bg-cyan-600"
+    class="py-10 px-10 max-md:px-5 flex max-sm:flex-col relative items-center max-md:gap-10 gap-20 justify-center bg-main"
   >
     <!-- blob stick div -->
-    <div
-      class="border-8 w-28 h-28 right-5 -top-14 absolute rounded-full border-cyan-400"
-    ></div>
-    <img src="/static/images/side.png" alt="" />
+
+    <img src="/static/images/side.png" alt="krakends phone dashboard" />
     <div class="max-md:text-center">
       <span
         class="border p-2 rounded-full border-cyan-200 text-xs text-cyan-200"
@@ -192,11 +186,67 @@
       </span>
       <a
         href="{%url 'sign-up'%}"
-        class="border border-cyan-200 text-cyan-200 text-sm px-5 py-3 rounded-full max-md:mx-auto max-md:hidden mt-5 w-fit block"
-        >Learn More<i class="ri-arrow-right-up-line"></i
+        class="border bg-white text-main text-sm px-5 py-3 rounded-full max-md:mx-auto max-md:hidden mt-5 w-fit block"
+        >Start Expert Trading<i class="ri-arrow-right-up-line"></i
       ></a>
     </div>
   </div>
+
+  <!-- copy trader explain ends -->
+
+  <!-- reasons start -->
+
+  <div
+    class="bg-white p-20 max-md:p-5 flex justify-around text-base gap-10 max-md:flex-col"
+  >
+    <div class="flex flex-col items-center gap-5">
+      <i class="ri-vip-diamond-line text-5xl text-main"></i>
+      <p>Watch your profits grow automatically</p>
+    </div>
+    <div class="flex flex-col items-center gap-5">
+      <i class="ri-time-line text-main text-5xl"></i>
+      <p>Available 24/7 support</p>
+    </div>
+    <div class="flex flex-col items-center gap-5">
+      <i class="ri-lock-star-line text-5xl text-main"></i>
+      <p>Secured asset trust</p>
+    </div>
+  </div>
+  <!-- reasons end -->
+
+  <!-- accessibility starts -->
+  <div
+    class="bg-white p-20 max-md:p-5 relative flex min-h-screen justify-center flex-col max-md:gap-5"
+  >
+    <div
+      class="absolute top-0 right-0 bottom-0 left-0 bg-[rgba(255,255,255,.8)] text-gray-900 z-50 flex flex-col justify-center font-light items-center text-sm"
+    >
+      <span
+        class="text-xs text-gray-700 border p-3 rounded-full border-gray-700"
+        >Trade from anywhere</span
+      >
+      <h1
+        class="text-5xl font-semibold max-md:text-3xl text-center pb-4 pt-2 text-main"
+      >
+        Available in over 197 countries
+      </h1>
+      <p class="text-center">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
+        animi?
+      </p>
+      <a
+        href="{%url 'sign-up'%}"
+        class="bg-main text-white px-5 py-3 rounded-full mt-10 w-fit block mx-auto"
+        >Join us now <i class="ri-arrow-right-up-line"></i
+      ></a>
+    </div>
+    <img
+      src="/static/images/globe.png"
+      alt="Access coin mask from around the world"
+      class="absolute top-0 h-screen object-cover max-md:object-contain left-1/2 -translate-x-1/2 max-md:w-4/5 opacity-60"
+    />
+  </div>
+  <!-- accessibility ends -->
 
   <script>
     document.addEventListener("alpine:init", () => {

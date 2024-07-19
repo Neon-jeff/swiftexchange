@@ -1,155 +1,168 @@
-{% extends "base.html" %}
-{%load static%}
-{% load countries %}
-{% block content %}
+{% extends "base.html" %} {%load static%} {% load countries %}
+<!--  -->
+{% block content%}
 
-<main class=' py-10 bg-black flex min-h-screen justify-center items-center text-base' x-data="form" >
-     {%include "components/alerts.html"%}
-     {% include "components/nav.html" %}
-     {% include "components/loader.html" %}
-     {% include "components/error.html" %}
-     {{countries|json_script:'countries'}}
-    <section class='w-full relative'>
-
-    <form action=""  @submit="signUp" class='w-2/5 [&>input]:border [&>input]:border-white  [&>input]:bg-transparent text-sm  max-md:w-11/12 flex flex-col gap-4 max-md:mt-0 mt-10 p-10 max-md:p-5 mx-auto   shadow-sm   rounded-md z-50 text-gray-300' >
-            {% csrf_token %}
-            <h1 class='text-2xl  font-medium text-main'>Create Account</h1>
-             <p class=' text-gray-300'>Already Registered? <a href="{%url 'login'%}" class='text-blue-400'>Sign In</a></p>
-                <!-- personal Details -->
-                {%include 'pages/register-steps/step1.html' %}
-                 {%include 'pages/register-steps/step2.html' %}
-                 {%include 'pages/register-steps/step3.html' %}          
-
+<main
+  class="py-10 bg-white flex min-h-screen justify-center items-center text-base"
+  x-data="form"
+>
+  {%include "components/alerts.html"%}
+  <!--  -->
+  {% include "components/loader.html" %}
+  <!--  -->
+  {% include "components/error.html" %}
+  <!--  -->
+  {{countries|json_script:'countries'}}
+  <section class="w-full relative">
+    <form
+      action=""
+      @submit="signUp"
+      class="w-2/5 [&_input]:border [&_input]:border-neutral-900 text-sm max-md:w-11/12 flex flex-col gap-4 p-10 max-md:p-5 mx-auto shadow-sm rounded-md z-50 text-gray-700"
+      autocomplete="off"
+    >
+      {% csrf_token %}
+      <a href="/" class="self-center flex flex-col items-center">
+        {%include 'components/logo.html'%}
+        <p class="text-sm text-black font-semibold text-center">Krakends</p>
+      </a>
+      <h1 class="text-2xl text-center font-medium text-black">
+        Create Account
+      </h1>
+      <p class="text-gray-500 text-center">
+        Already Registered?
+        <a href="{%url 'login'%}" class="text-blue-400">Sign In</a>
+      </p>
+      <!-- personal Details -->
+      {%include 'pages/register-steps/step1.html' %}
+      <!--  -->
+      {%include 'pages/register-steps/step2.html' %}
+      <!--  -->
+      {%include 'pages/register-steps/step3.html' %}
     </form>
-    </section>
-<script>
-    
-    document.addEventListener('alpine:init', () => {
-        let countries=JSON.parse(document.querySelector('#countries').textContent)
+  </section>
+  <script>
+    document.addEventListener("alpine:init", () => {
+      let countries = JSON.parse(
+        document.querySelector("#countries").textContent
+      );
 
-        Alpine.data('form', () => ({
-            allCountries:countries,
-            currentCountry:countries[0],
-            showLoader:false,
-            showError:false,
-            errorMessage:'',
-            step1:true,
-            step2:false,
-            step3:false,
-            setCurrentCountry(el){
-                this.currentCountry=this.allCountries.find(item=>item.name==el.value)          
-            },
-            moveFirst(){
-                if(!this.validateInput(1,4)){
-                    this.showError=true
-                    this.errorMessage="Fill every field and enter a valid email"
-                    this.step1=true
-                }
-                else{
-                this.showError=false
-                this.step1=false
-                this.step2=true
-                this.step3=false
-                }
-            },
-            moveHome(){
+      Alpine.data("form", () => ({
+        allCountries: countries,
+        currentCountry: countries[0],
+        showLoader: false,
+        showError: false,
+        errorMessage: "",
+        step1: true,
+        step2: false,
+        step3: false,
+        setCurrentCountry(el) {
+          this.currentCountry = this.allCountries.find(
+            (item) => item.name == el.value
+          );
+        },
+        moveFirst() {
+          if (!this.validateInput(1, 4)) {
+            this.showError = true;
+            this.errorMessage = "Fill every field and enter a valid email";
+            this.step1 = true;
+          } else {
+            this.showError = false;
+            this.step1 = false;
+            this.step2 = true;
+            this.step3 = false;
+          }
+        },
+        moveHome() {
+          this.step1 = true;
+          this.step2 = false;
+          this.step3 = false;
+        },
+        moveLast() {
+          if (!this.validateInput(4, 6)) {
+            this.showError = true;
+            this.errorMessage = "Fill every field";
+            this.step2 = true;
+          } else {
+            this.step1 = false;
+            this.step2 = false;
+            this.step3 = true;
+          }
+        },
 
-                 this.step1=true
-                this.step2=false
-                this.step3=false
-            },
-            moveLast(){
-                if(!this.validateInput(4,6)){
-                    this.showError=true
-                    this.errorMessage="Fill every field"
-                    this.step2=true
-                }
-                    else{
-                this.step1=false
-                this.step2=false
-                this.step3=true
-                    }
-            },
+        validateInput(start, end) {
+          let result = true;
+          let fields = Array.from(document.querySelectorAll("input"));
+          for (let field of fields.slice(start, end)) {
+            if (!field.checkValidity()) {
+              field.style.borderStyle = "solid";
+              field.style.borderWidth = ".5px";
+              field.style.borderColor = "red";
+              result = false;
 
-            validateInput(start,end){
-                let result=true
-                let fields=Array.from(document.querySelectorAll('input'))
-                for(let field of fields.slice(start,end)){
-                    if(( !field.checkValidity())){
-                        field.style.borderStyle='solid'
-                        field.style.borderWidth='.5px'
-                        field.style.borderColor='red'
-                        result=false
-
-                        field.addEventListener('focus',()=>{
-                            field.style.border='none'
-                        })
-                    }
-                    else{
-                        field.style.border='none'
-                    }
-                }
-                return result
-
-            },
-            checkPasswords(){
-                let passwords=Array.from(document.querySelectorAll('input')).slice(-2)
-                if(passwords[0].value.length < 6){
-                    this.showError=true
-                    this.errorMessage="Passwords must be greater than 6 characters"
-                    passwords[0].style.border='.5px solid red'
-                    passwords[0].addEventListener('focus',()=>{
-                        passwords[0].style.border='none'
-                    })
-                    return false
-                }
-                else if(passwords[0].value !== passwords[1].value){
-                    this.showError=true
-                    this.errorMessage="Passwords do not match"
-                    return false
-                }
-                return true
-            },
-            clicked:false,
-            togglePassword(btn){
-                this.clicked=!this.clicked
-                        if (this.clicked){
-                            btn.previousElementSibling.setAttribute('type','text')
-                            btn.textContent='Hide'
-                        }
-                        else{
-                            btn.previousElementSibling.setAttribute('type','password')
-                            btn.textContent='Show'
-                        }
-            },
-            async signUp(e){
-                    e.preventDefault()
-                    if(this.checkPasswords()){
-                        let form=new FormData(document.querySelector('form'))
-                        form.set('country',this.currentCountry.name)
-                this.showLoader=true
-                await fetch(``,{
-                    body:form,
-                    method:'post',
-                }).then(async (res)=>{
-                    let data=await res.json()
-                    if (data.status=='success'){
-                        await window.location.assign(window.location.origin +'/accounts/register-success')
-                    }
-                    else if(data.status=='failure'){
-                        this.showLoader=false
-                        this.showError=true
-                        this.errorMessage='Email already used'
-                    }
-                })
-                    }
-
-
-
+              field.addEventListener("focus", () => {
+                field.style.border = "none";
+              });
+            } else {
+              field.style.border = "none";
             }
-
-    }))})
-</script>
-
+          }
+          return result;
+        },
+        checkPasswords() {
+          let passwords = Array.from(document.querySelectorAll("input")).slice(
+            -2
+          );
+          if (passwords[0].value.length < 6) {
+            this.showError = true;
+            this.errorMessage = "Passwords must be greater than 6 characters";
+            passwords[0].style.border = ".5px solid red";
+            passwords[0].addEventListener("focus", () => {
+              passwords[0].style.border = "none";
+            });
+            return false;
+          } else if (passwords[0].value !== passwords[1].value) {
+            this.showError = true;
+            this.errorMessage = "Passwords do not match";
+            return false;
+          }
+          return true;
+        },
+        clicked: false,
+        togglePassword(btn) {
+          this.clicked = !this.clicked;
+          if (this.clicked) {
+            btn.previousElementSibling.setAttribute("type", "text");
+            btn.textContent = "Hide";
+          } else {
+            btn.previousElementSibling.setAttribute("type", "password");
+            btn.textContent = "Show";
+          }
+        },
+        async signUp(e) {
+          e.preventDefault();
+          if (this.checkPasswords()) {
+            let form = new FormData(document.querySelector("form"));
+            form.set("country", this.currentCountry.name);
+            this.showLoader = true;
+            await fetch(``, {
+              body: form,
+              method: "post",
+            }).then(async (res) => {
+              let data = await res.json();
+              if (data.status == "success") {
+                await window.location.assign(
+                  window.location.origin + "/accounts/register-success"
+                );
+              } else if (data.status == "failure") {
+                this.showLoader = false;
+                this.showError = true;
+                this.errorMessage = "Email already used";
+              }
+            });
+          }
+        },
+      }));
+    });
+  </script>
 </main>
 {%endblock%}

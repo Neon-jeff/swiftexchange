@@ -1,26 +1,53 @@
 <!-- Personal Details -->
 
- <div class=" flex flex-col gap-3" x-transition x-transition.duration.200ms x-show="step1" >
-                <!-- progress bar full -->
-                <!-- <div class="flex flex-col text-base gap-1 text-gray-400 ">
+<div
+  class="flex flex-col gap-3"
+  x-transition
+  x-transition.duration.200ms
+  x-show="step1"
+>
+  <!-- progress bar full -->
+  <!-- <div class="flex flex-col text-base gap-1 text-gray-400 ">
 
               
                      <div class="radial-progress text-gray-200" style="--value:10; --size:3rem; --thickness: 2px;" role="progressbar">20%</div>
                      Personal Details
                    </div> -->
-                   <!-- Fieldsets Start -->
-                    <fieldset class="flex flex-col gap-2">
-                        <label for="first_name">First Name *</label>
-                        <input type="text" name="first_name" placeholder="Enter Your First Name" class="p-3 rounded-md bg-transparent border border-white" required>
-                    </fieldset>
-                                        <fieldset class="flex flex-col gap-2">
-                        <label for="last_name">Last Name *</label>
-                        <input type="text" name="last_name" placeholder="Enter Your Last Name" class="p-3 rounded-md bg-transparent border border-white" required>
-                    </fieldset>
-                                        <fieldset class="flex flex-col gap-2">
-                        <label for="first_name">Email *</label>
-                        <input type="email" name="email" placeholder="Valid Email Address" class="p-3 rounded-md bg-transparent border border-white" required>
-                    </fieldset>
+  <!-- Fieldsets Start -->
+  <fieldset class="flex flex-col gap-2">
+    <label for="first_name">First Name *</label>
+    <input
+      type="text"
+      name="first_name"
+      placeholder="Enter Your First Name"
+      class="p-3 rounded-md bg-transparent border border-white"
+      required
+    />
+  </fieldset>
+  <fieldset class="flex flex-col gap-2">
+    <label for="last_name">Last Name *</label>
+    <input
+      type="text"
+      name="last_name"
+      placeholder="Enter Your Last Name"
+      class="p-3 rounded-md bg-transparent border border-white"
+      required
+    />
+  </fieldset>
+  <fieldset class="flex flex-col gap-2">
+    <label for="first_name">Email *</label>
+    <input
+      type="email"
+      name="email"
+      placeholder="Valid Email Address"
+      class="p-3 rounded-md bg-transparent border border-white"
+      required
+    />
+  </fieldset>
 
-                    <span @click="step1=moveFirst" class="bg-main p-3 max-md:w-6/12 mt-4  flex items-center gap-2 cursor-pointer justify-center rounded-full text-black self-end w-4/12">Contact Details <ion-icon name="chevron-forward-outline"></ion-icon></span>
-                </div>
+  <span
+    @click="step1=moveFirst"
+    class="bg-main p-3 max-md:w-6/12 mt-4 flex items-center gap-2 cursor-pointer justify-center rounded-full text-black self-center w-4/12"
+    >Contact Details <ion-icon name="chevron-forward-outline"></ion-icon
+  ></span>
+</div>

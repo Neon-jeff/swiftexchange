@@ -24,7 +24,7 @@
     <label for="email">Select Country</label>
     <span
       :value="currentCountry.name"
-      class="flex items-center relative gap-5 mt-3 border border-white p-3 rounded-md"
+      class="flex items-center relative gap-5 mt-3 border border-neutral-900 p-3 rounded-md"
       @click="show=!show"
       ><img :src="currentCountry.flag" alt="" />
       <span x-text="currentCountry.name"></span>
@@ -36,10 +36,10 @@
     <span
       x-show="show"
       title="name"
-      class="p-3 w-full rounded-md bg-sub h-56 relative overflow-auto"
+      class="p-3 w-full rounded-md border h-56 relative overflow-auto"
       x-cloak
     >
-      <!-- <span class="py-5 fixed top-0 left-0 right-0 bg-sub px-5">close</span> -->
+      <!-- <span class="py-5 fixed top-0 left-0 right-0 bg-main px-5">close</span> -->
       <template x-for="country in allCountries">
         <span
           :value="country.name"
@@ -55,11 +55,11 @@
 
     <select
       title="name"
-      class="p-3 w-full rounded-md border border-white bg-transparent"
+      class="p-3 w-full rounded-md border border-neutral-900 bg-transparent"
       name="state"
     >
       <template x-for="state in currentCountry.states">
-        <option :value="state" x-text="state" class="bg-sub"></option>
+        <option :value="state" x-text="state" class=""></option>
       </template>
     </select>
   </fieldset>
@@ -69,17 +69,17 @@
       type="text"
       name="address"
       placeholder="Enter Your Address"
-      class="p-3 rounded-md bg-transparent border border-white"
+      class="p-3 rounded-md bg-transparent border border-neutral-900"
       required
     />
   </fieldset>
 
   <fieldset class="flex gap-2 flex-col">
     <label for="">Phone *</label>
-    <span class="flex rounded-md bg-transparent border border-white">
+    <span class="flex rounded-md bg-transparent border border-neutral-900">
       <select class="p-3 w-1/4 rounded-md bg-transparent" name="phone_code">
         {% for country in countries %}
-        <option value="{{ country.phone_code }}" class="bg-sub">
+        <option value="{{ country.phone_code }}" class="">
           {{country.name}} {{ country.phone_code }}
         </option>
         {% endfor %}
@@ -87,7 +87,7 @@
       <input
         type="tel"
         name="phone"
-        class="p-3 bg-transparent border border-white rounded-md w-full active:border-[1px]"
+        class="p-3 bg-transparent rounded-md w-full"
         placeholder="Phone number"
         required
       />
@@ -99,23 +99,23 @@
     <select
       name="currency"
       id=""
-      class="p-3 w-full rounded-md bg-transparent border border-white"
+      class="p-3 w-full rounded-md bg-transparent border border-neutral-900"
       required
     >
-      <option class="bg-sub" value="CAD">CAD</option>
-      <option class="bg-sub" value="USD">USD</option>
-      <option class="bg-sub" value="GBP">GBP</option>
-      <option class="bg-sub" value="AUD">AUD</option>
-      <option class="bg-sub" value="BRL">BRL</option>
-      <option class="bg-sub" value="ZAR">ZAR</option>
-      <option class="bg-sub" value="PHP">PHP</option>
+      <option class="" value="CAD">CAD</option>
+      <option class="" value="USD">USD</option>
+      <option class="" value="GBP">GBP</option>
+      <option class="" value="AUD">AUD</option>
+      <option class="" value="BRL">BRL</option>
+      <option class="" value="ZAR">ZAR</option>
+      <option class="" value="PHP">PHP</option>
     </select>
   </fieldset>
 
   <div class="flex gap-4 self-end mt-3">
     <span
       @click="moveHome"
-      class="bg-sub px-3 py-3 flex items-center gap-2 cursor-pointer justify-center rounded-full text-gray-200"
+      class="bg-main px-3 py-3 flex items-center gap-2 cursor-pointer justify-center rounded-full text-gray-200"
     >
       <ion-icon name="chevron-back-outline"></ion-icon>
       Back

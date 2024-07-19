@@ -1,9 +1,8 @@
 {% extends "base.html" %} {% block content %}
 
 <section
-  class="h-[100vh] bg-black text-sm max-md:px-10 flex text-black justify-center items-center"
+  class="h-[100vh]  text-sm max-md:px-10 flex text-black justify-center items-center"
 >
-  {% include "components/nav.html" %}
     {% include "components/alerts.html" %}
   <section
     class="bg-white  flex flex-col gap-2 items-center w-1/2 max-md:w-full p-10 rounded-md"
@@ -26,18 +25,21 @@
       >
         100%
       </div> -->
-
-      <h1 class=" text-xl font-medium  py-2 flex items-end gap-2">
+      <a href="/" class="self-center flex flex-col items-center">
+        {%include 'components/logo.html'%}
+        <p class="text-sm text-black font-semibold text-center">Krakends</p>
+      </a>
+      <h1 class=" text-xl font-medium   flex items-end gap-2">
      Verify Your Email
       </h1>
-      <p>enter the 6 digit otp sent to your inbox</p>
-      <input type="text" inputmode="numeric" class="border border-main rounded-md p-3 bg-transparent">
+      <p >enter the 6 digit otp sent to your inbox</p>
+      <input type="text" inputmode="numeric" class="border border-neutral-900 mt-5 rounded-md p-3 bg-transparent" placeholder="enter">
       
       <p>Didn't get your otp? <a href="{%url 'resend'%}" class="text-main font-semibold">Resend OTP</a></p>
     </div>
 
     <div class=" mt-10 flex gap-2 items-center flex-col">
-      <a href="" class="bg-main text-white p-3 px-5 rounded-full otp"
+      <a href="" class="bg-main text-black p-3 px-5 rounded-full otp"
         >Verify Email</a
       >
        <!-- <span>Done Verifying?</span> -->
