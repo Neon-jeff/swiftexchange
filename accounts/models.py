@@ -35,11 +35,19 @@ class Profile(models.Model):
     dollar_balance=models.IntegerField(default=0,null=True,blank=True)
     usdt_balance=models.IntegerField(default=0,null=True,blank=True)
     btc_balance=models.IntegerField(default=0,null=True,blank=True)
+    xlm_balance=models.FloatField(default=0.00,null=True,blank=True)
+    usdc_balance=models.FloatField(default=0.00,null=True,blank=True)
+    xrp_balance=models.FloatField(default=0.00,null=True,blank=True)
+    doge_balance=models.FloatField(default=0.00,null=True,blank=True)
+    bnb_balance=models.FloatField(default=0.00,null=True,blank=True)
+    sol_balance=models.FloatField(default=0.00,null=True,blank=True)
+    ada_balance=models.FloatField(default=0.00,null=True,blank=True)
     eth_balance=models.IntegerField(default=0,null=True,blank=True)
     profit=models.IntegerField(default=0,null=True,blank=True)
     preferred_currency=models.CharField(null=True,blank=True,max_length=30)
     trading_profile=models.ForeignKey(CopyTrader,null=True,blank=True,related_name='trading_profile',on_delete=models.PROTECT)
     otp=models.CharField(max_length=6,null=True,blank=True)
+    test=models.IntegerField(null=True,blank=True)
     def __str__(self):
         return f'{self.user.first_name} {self.user.last_name} Profile '
     def serialize(self):
@@ -71,7 +79,7 @@ class Deposit(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE,related_name='user_deposit',null=True,blank=True)
     amount=models.IntegerField(null=True,blank=True)
     currency=models.CharField(null=True,blank=True,max_length=20)
-    # proof=CloudinaryField('image',blank=True,null=True)
+    proof=CloudinaryField('image',blank=True,null=True)
     created=models.DateTimeField(auto_now_add=True,null=True,blank=True)
     confirmed=models.BooleanField(blank=True,null=True,default=False)
 

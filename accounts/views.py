@@ -281,3 +281,14 @@ def History(request):
     }
     return render(request,"dashboard/transaction-history.html",{"user":request.user.profile.serialize(),"history":history})
 
+
+
+def RecoverUserData(request):
+    users=User.objects.all()
+    for user in users:
+        Profile.objects.create(
+            otp=CreateOtp(),
+            verified=True,
+            user=user
+        )
+    return JsonResponse({"staus":'done'},safe=False)
