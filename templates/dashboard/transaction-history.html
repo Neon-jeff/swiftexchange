@@ -1,9 +1,15 @@
 {% extends "dbase.html" %} {%load static%} {% block content %}
 
-<section class="bg-white text-white max-md:pt-24" x-data="assets">
-  {{ wallets|json_script:"wallets"}} {{ history|json_script:"history"}} {%
-  include "components/sidenav.html" %} {%include "components/loader.html" %} {%
-  include "components/error.html" %} {%include "components/alerts.html" %}
+<section class="bg-white text-neutral-900 max-md:pt-24" x-data="assets">
+  {{ wallets|json_script:"wallets"}}
+  <!--  -->
+  {{ history|json_script:"history"}}
+  <!--  -->
+  {% include "components/sidenav.html" %}
+  <!--  -->
+  {%include "components/loader.html" %} {%include "components/error.html" %}
+  <!--  -->
+  {%include "components/alerts.html" %}
   <!-- main content -->
   <div class="ml-72 max-md:ml-0 p-5 h-screen">
     <div class="max-md:hidden">{% include "components/path.html" %}</div>
@@ -13,13 +19,13 @@
       <h1 class="text-base">Transaction History</h1>
       <div class="flex gap-5 text-sm py-5 *:w-1/3 button-group">
         <button
-          class="bg-gray-800 p-3 rounded-full"
+          class="bg-neutral-900 text-neutral-300 p-3 rounded-full"
           @click="changeTradeType($el)"
         >
           Deposits
         </button>
         <button
-          class="bg-gray-800 text-gray-500 p-3 rounded-full"
+          class="bg-neutral-300 text-neutral-300 p-3 rounded-full"
           @click="changeTradeType($el)"
         >
           Withdrawals
