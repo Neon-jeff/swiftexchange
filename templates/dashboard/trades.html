@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<section class='bg-black text-white max-md:pt-20' x-data="assets">
+<section class='bg-white text-neutral-900 max-md:pt-20' x-data="assets">
 {% comment %} Coin data from request {% endcomment %}
 {{ assets|json_script:"assets"}}
 {{user|json_script:"user"}}
@@ -117,10 +117,16 @@
                 buttons.forEach(button=>{
                     if(button.textContent==el.textContent){
                         // debugging happening here hahahahaha
-                        button.classList.remove('text-gray-500')
+                        button.classList.remove('text-neutral-900')
+                        button.classList.remove('bg-neutral-500')
+                        button.classList.add('text-neutral-100')
+                        button.classList.add('bg-neutral-900')
                     }
                     else{
-                        button.classList.add('text-gray-500')
+                        button.classList.remove('text-neutral-100')
+                        button.classList.remove('bg-neutral-900')
+                         button.classList.add('text-neutral-900')
+                        button.classList.add('bg-neutral-500')
                     }
                 })
                 let templates=Array.from(document.querySelectorAll('.trades'))

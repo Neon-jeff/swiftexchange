@@ -1,8 +1,24 @@
-<section class="fixed z-50 h-screen w-screen bg-[rgb(0,0,0,.8)] p-10 top-0   flex justify-center items-center" x-show="showCopy" x-transition x-transition.duration.500ms>
-<div class="bg-gray-100  rounded-md w-1/2  h-56 p-10 flex flex-col relative gap-2 max-md:w-full  justify-center items-center">
-    <ion-icon name="close-sharp" class="absolute top-5 right-5 text-xl p-1 bg-blue-100 cursor-pointer hover:bg-blue-300 transition ease-in duration-150 rounded-md text-blue-600" @click="showCopy=!showCopy"></ion-icon>
-   <ion-icon name="checkmark-circle" class="text-green-500 text-3xl" ></ion-icon>
-    <span class="text-gray-500 font-medium text-sm text-center " x-text="copyMessage" ></span>
-
-</div>
+<section
+  class="fixed z-50 h-screen w-screen bg-[rgb(0,0,0,.8)] p-10 top-0 flex justify-center items-center"
+  x-show="showCopy"
+  x-transition
+  x-transition.duration.500ms
+>
+  <div
+    class="bg-gray-100 rounded-md w-1/2 h-56 p-10 flex flex-col relative gap-2 max-md:w-full justify-center items-center"
+  >
+    <ion-icon
+      name="close-sharp"
+      class="absolute top-5 right-5 text-xl p-1 bg-blue-100 cursor-pointer hover:bg-blue-300 transition ease-in duration-150 rounded-md text-blue-600"
+      @click="showCopy=!showCopy"
+    ></ion-icon>
+    <ion-icon
+      name="checkmark-circle"
+      class="text-green-500 text-3xl"
+    ></ion-icon>
+    <span
+      class="text-gray-500 font-medium text-sm text-center"
+      x-text="copyMessage"
+    ></span>
+  </div>
 </section>

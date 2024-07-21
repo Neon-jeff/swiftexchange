@@ -1,73 +1,92 @@
-{% extends "dbase.html" %}
-{%load static%}
+{% extends "dbase.html" %} {%load static%} {% block content %}
 
-{% block content %}
+<section class="bg-white text-white max-md:pt-24" x-data="assets">
+  {{ wallets|json_script:"wallets"}} {% include "components/sidenav.html" %} {%
+  include "components/loader.html" %} {% include "components/error.html" %} {%
+  include "components/alerts.html" %} {% comment %} main content {% endcomment
+  %}
+  <div class="ml-72 max-md:ml-0 p-5 h-screen">
+    <div class="max-md:hidden">{% include "components/path.html" %}</div>
 
-<section class="bg-black  text-white max-md:pt-24" x-data="assets">
-{{ wallets|json_script:"wallets"}}
-{% include "components/sidenav.html" %}
-{% include "components/loader.html" %}
-{% include "components/error.html" %}
-{% include "components/alerts.html" %}
+    <!-- Currency toggle list -->
 
-{% comment %} main content {% endcomment %}
-<div class="ml-72 max-md:ml-0 p-5 h-screen">
-<div class='max-md:hidden'>
-{% include "components/path.html" %}
-</div>
-
-
-<!-- Currency toggle list -->
-
-<div class="flex flex-col text-sm">
-    <h1 class='text-2xl font-medium pb-4 text-gray-300'>Fund Account</h1>
-    <!-- main container -->
-    <div class="bg-sub *:z-[1] animate-heroparagraph relative rounded-md  w-1/2 justify-center max-md:w-full text-gray-300 flex flex-col  gap-5 p-10 ">
+    <div class="flex flex-col text-sm">
+      <h1 class="text-2xl font-medium pb-4 text-gray-300">Fund Account</h1>
+      <!-- main container -->
+      <div
+        class="bg-gray-100 *:z-[1] animate-heroparagraph relative rounded-md w-1/2 justify-center max-md:w-full text-gray-300 flex flex-col gap-5 p-10"
+      >
         {%include 'components/blurblob.html'%}
-       <span>
-        <span class="text-xl mb-3  block text-main">Choose deposit method</span>
-        <span class="text-gray-400">Select from the options below to have a swift deposit experience, for any difficulty contact us from our support email</span>
-       </span>
-        <a href="{%url 'bank'%}" class="flex items-center gap-2 p-5 rounded-full bg-gray-800 w-1/2 max-md:w-3/5 relative  ">
-            <ion-icon name="business-outline" class="text-xl text-gray-400"></ion-icon>
-            Bank
-            <ion-icon name="chevron-forward-outline" class="absolute right-5 top-1/2 -translate-y-1/2 "></ion-icon>
+        <span>
+          <span class="text-xl mb-3 block text-main"
+            >Choose deposit method</span
+          >
+          <span class="text-gray-400"
+            >Select from the options below to have a swift deposit experience,
+            for any difficulty contact us from our support email</span
+          >
+        </span>
+        <a
+          href="{%url 'bank'%}"
+          class="flex items-center gap-2 p-5 rounded-full bg-gray-800 w-1/2 max-md:w-3/5 relative"
+        >
+          <ion-icon
+            name="business-outline"
+            class="text-xl text-gray-400"
+          ></ion-icon>
+          Bank
+          <ion-icon
+            name="chevron-forward-outline"
+            class="absolute right-5 top-1/2 -translate-y-1/2"
+          ></ion-icon>
         </a>
-        <a href="{%url 'card'%}" class="flex items-center gap-2 p-5 rounded-full bg-gray-800 w-1/2 max-md:w-3/5 relative ">
-            <ion-icon name="card-outline" class="text-xl text-gray-400"></ion-icon>
-            Card
-                        <ion-icon name="chevron-forward-outline" class="absolute right-5 top-1/2 -translate-y-1/2 "></ion-icon>
-
+        <a
+          href="{%url 'card'%}"
+          class="flex items-center gap-2 p-5 rounded-full bg-gray-800 w-1/2 max-md:w-3/5 relative"
+        >
+          <ion-icon
+            name="card-outline"
+            class="text-xl text-gray-400"
+          ></ion-icon>
+          Card
+          <ion-icon
+            name="chevron-forward-outline"
+            class="absolute right-5 top-1/2 -translate-y-1/2"
+          ></ion-icon>
         </a>
-        <a href="{%url 'deposits'%}" class="flex items-center gap-2 p-5 rounded-full bg-gray-800 w-1/2 max-md:w-3/5 relative ">
-            <ion-icon name="logo-bitcoin" class="text-xl text-gray-400"></ion-icon>
-            Crypto
-                        <ion-icon name="chevron-forward-outline" class="absolute right-5 top-1/2 -translate-y-1/2 "></ion-icon>
-
+        <a
+          href="{%url 'deposits'%}"
+          class="flex items-center gap-2 p-5 rounded-full bg-gray-800 w-1/2 max-md:w-3/5 relative"
+        >
+          <ion-icon
+            name="logo-bitcoin"
+            class="text-xl text-gray-400"
+          ></ion-icon>
+          Crypto
+          <ion-icon
+            name="chevron-forward-outline"
+            class="absolute right-5 top-1/2 -translate-y-1/2"
+          ></ion-icon>
         </a>
-
+      </div>
     </div>
-</div>
 
-<!-- deposit history -->
+    <!-- deposit history -->
+  </div>
+  <script src="{% static 'js/fetch-data.js'%}"></script>
 
-</div>
-<script src="{% static 'js/fetch-data.js'%}"></script>
-
-<script>
-    document.addEventListener('alpine:init', () => {
-        let form=new FormData(document.querySelector('form'))
-        const assets = JSON.parse(document.getElementById("wallets").textContent);
-        Alpine.data('assets', () => ({
-            // MAKE DEPOSIT WITH THIS FUNCTION
-            showLoader:false,
-            showError:false,
-            errorMessage:"Something went wrong",
-        }))
-    })
-</script>
+  <script>
+    document.addEventListener("alpine:init", () => {
+      let form = new FormData(document.querySelector("form"));
+      const assets = JSON.parse(document.getElementById("wallets").textContent);
+      Alpine.data("assets", () => ({
+        // MAKE DEPOSIT WITH THIS FUNCTION
+        showLoader: false,
+        showError: false,
+        errorMessage: "Something went wrong",
+      }));
+    });
+  </script>
 </section>
 
 {% endblock content %}
-
-

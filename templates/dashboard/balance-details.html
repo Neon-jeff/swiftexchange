@@ -1,20 +1,43 @@
-<div class=' text-gray-200 rounded-md  w-3/5 max-md:w-full flex flex-col relative justify-between'>
-<!-- balance and greetings -->
-<span class="text-gray-300 text-2xl">Welcome {{request.user.first_name}}</span>
-<div class='flex justify-between items-center p-5 py-10  rounded-xl mt-5 bg-sub bg-opacity-90 relative'>
+<div
+  class="text-neutral-900 rounded-md w-3/5 max-md:w-full flex flex-col relative justify-between"
+>
+  <!-- balance and greetings -->
+  <span class="text-neutral-900 text-2xl"
+    >Welcome {{request.user.first_name}}</span
+  >
+  <div
+    class="flex justify-between items-center p-5 py-10 rounded-xl mt-5 bg-gray-100 bg-opacity-90 relative"
+  >
     <!-- blob -->
     <!-- <div class="absolute p-5 rounded-full bg-gray-200 -top-5 right-0"></div> -->
-    <div class='flex items-center gap-5 max-md:gap-3'>
-    <span class=' flex  justify-center items-center  text-gray-200'>
-    <ion-icon name="wallet" class="text-4xl -rotate-12"></ion-icon>
-    </span>
-    <p class="flex flex-col gap-1"><span class='text-sm font-medium  flex gap-2 items-center'>Assets Balance <span><ion-icon name="eye" class="text-lg text-gray-200" @click="hideBalance" x-show="balanceHidden" ></ion-icon>
-    <ion-icon name="eye-off" class="text-lg text-gray-300" x-show="!balanceHidden" @click="hideBalance"></ion-icon>
-    </span></span>  <span class='text-3xl  font-semibold balance'>${{request.user.profile.dollar_balance|add:request.user.profile.profit}}.00</span></p>
+    <div class="flex items-center gap-5 max-md:gap-3">
+      <span class="flex justify-center items-center text-neutral-900">
+        <ion-icon name="wallet" class="text-4xl -rotate-12"></ion-icon>
+      </span>
+      <p class="flex flex-col gap-1">
+        <span class="text-sm font-medium flex gap-2 items-center"
+          >Assets Balance
+          <span
+            ><ion-icon
+              name="eye"
+              class="text-lg text-neutral-900"
+              @click="hideBalance"
+              x-show="balanceHidden"
+            ></ion-icon>
+            <ion-icon
+              name="eye-off"
+              class="text-lg text-neutral-900"
+              x-show="!balanceHidden"
+              @click="hideBalance"
+            ></ion-icon> </span
+        ></span>
+        <span class="text-3xl font-semibold balance"
+          >${{request.user.profile.dollar_balance|add:request.user.profile.profit}}.00</span
+        >
+      </p>
     </div>
     <!-- <p class='text-green-600 bg-green-300 p-2 rounded-md text-xs font-semibold'>Live</p> -->
-</div>
-<!-- Balance Summary -->
-{%include 'dashboard/summary.html'%}
-
+  </div>
+  <!-- Balance Summary -->
+  {%include 'dashboard/summary.html'%}
 </div>

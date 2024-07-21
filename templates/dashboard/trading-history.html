@@ -1,17 +1,20 @@
-<div class="p-5 bg-sub w-full h-full rounded-md text-xs">
+<div class="p-5 bg-gray-100 w-full h-full rounded-md text-xs">
   <h1 class="text-base">Trades History</h1>
   <div class="flex gap-5 text-sm py-5 *:w-fit *:px-5 button-group">
-    <button class="bg-gray-800 p-3 rounded-full px-5" @click="changeTradeType($el)">
+    <button
+      class="bg-neutral-900 text-neutral-100 p-3 rounded-full px-5"
+      @click="changeTradeType($el)"
+    >
       Open
     </button>
     <button
-      class="bg-gray-800 text-gray-500 p-3 px-5 rounded-full"
+      class="bg-neutral-500 text-neutral-900 p-3 px-5 rounded-full"
       @click="changeTradeType($el)"
     >
       Closed
     </button>
     <button
-      class="bg-gray-800 text-gray-500 p-3 px-5 rounded-full"
+      class="bg-neutral-500 text-neutral-900 p-3 px-5 rounded-full"
       @click="changeTradeType($el)"
     >
       Expert
@@ -22,7 +25,7 @@
 
   <div class="trades open" x-transition x-transition.duration.500ms>
     <template x-for="trade in open_trades" :key="trade.id">
-      <div class="flex justify-between bg-gray-800 p-5 rounded-md my-5">
+      <div class="flex justify-between bg-neutral-500 p-5 rounded-md my-5">
         <span x-text="trade.currency"></span>
         <span x-text="trade.created"></span>
         <span x-text="'$'+trade.amount"></span>
@@ -40,7 +43,7 @@
     x-transition.duration.500ms
   >
     <template x-for="trade in closed_trades" :key="trade.id">
-      <div class="flex justify-between bg-gray-800 p-5 rounded-md my-5">
+      <div class="flex justify-between bg-neutral-500 p-5 rounded-md my-5">
         <span x-text="trade.currency"></span>
         <span x-text="trade.created"></span>
         <span x-text="'$'+trade.amount"></span>
@@ -58,7 +61,7 @@
     x-transition.duration.500ms
   >
     <template x-for="trade in expert_trades" :key="trade.id">
-      <div class="flex justify-between bg-gray-800 p-5 rounded-md my-5">
+      <div class="flex justify-between bg-neutral-500 p-5 rounded-md my-5">
         <span x-text="trade.currency"></span>
         <span x-text="trade.created"></span>
         <span x-text="'$'+trade.amount"></span>

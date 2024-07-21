@@ -1,67 +1,98 @@
 {%load static%}
 
-<section class="text-gray-200">
+<section class="text-neutral-900">
   <h1 class="text-lg font-medium flex items-center gap-2">
-    <ion-icon name="analytics" class=" text-main text-3xl"></ion-icon>
+    <ion-icon name="analytics" class="text-main text-3xl"></ion-icon>
     Market Data
   </h1>
 
   <!-- button groups -->
   <div
-    class="flex button-group [&>*]:p-3 [&>*]:w-1/6 toggle-button-group [&>*]:bg-gray-900 my-5 text-xs max-md:text-xs gap-4 [&>*]:rounded-full text-gray-400 [&>*]:max-md:w-1/4"
-
+    class="flex button-group [&>*]:p-3 [&>*]:w-1/6 toggle-button-group my-5 text-xs max-md:text-xs gap-4 [&>*]:rounded-full text-neutral-900 [&>*]:max-md:w-1/4"
   >
     <!-- <button @click="changeMarketType($el)">Watchlists</button> -->
-    <button @click="changeMarketType($el)" class="font-medium text-sm text-gray-200">Crypto</button>
-    <button @click="changeMarketType($el)">Forex</button>
-    <button @click="changeMarketType($el)">Stocks</button>
+    <button
+      @click="changeMarketType($el)"
+      class="font-medium text-neutral-300 bg-neutral-900"
+    >
+      Crypto
+    </button>
+    <button @click="changeMarketType($el)" class="bg-neutral-300">Forex</button>
+    <button @click="changeMarketType($el)" class="bg-neutral-300">
+      Stocks
+    </button>
   </div>
 
   <!-- crypto items -->
-<div class="market crypto" x-transition x-transition.duration.500ms>
-    <template x-for="asset in matchingCoins"  :key="asset.name">
-    <div
-      class="cursor-pointer rounded-md hover:bg-black py-3   justify-center font-medium text-sm grid grid-cols-4 gap-10 "
-    >
-    <!-- <span class="w-1/12">
+  <div
+    class="market crypto grid grid-cols-4 max-md:grid-cols-2 gap-10 max-md:gap-5"
+    x-transition
+    x-transition.duration.500ms
+  >
+    <template x-for="asset in matchingCoins" :key="asset.name">
+      <div
+        class="cursor-pointer rounded-md bg-gray-100 py-3 justify-center font-medium text-sm gap-5 flex flex-col items-center"
+      >
+        <!-- <span class="w-1/12">
         <ion-icon name="star-outline" class="text-main"></ion-icon>
     </span> -->
-      <div class="flex items-center gap-4 col-span-2">
-        <img src="" :src="asset.image" alt="" class="h-[30px] w-[30px]" />
-        <span x-text="asset.name" class="max-md:hidden"></span>
-        <span x-text="asset.symbol" class="lg:hidden"></span>
+        <div class="flex items-center gap-4 col-span-2">
+          <img src="" :src="asset.image" alt="" class="h-[30px] w-[30px]" />
+          <span x-text="asset.name" class="max-md:hidden"></span>
+          <span x-text="asset.symbol" class="lg:hidden"></span>
+        </div>
+        <span x-text="'$' + asset.price" class="text-center col-span-2"></span>
       </div>
-          <span x-text="'$' + asset.price" class="text-center col-span-2"></span>
-
-    </div>
-  </template>
-</div>
-
-
+    </template>
+  </div>
 
   <!-- forex items -->
 
-<div class="market forex" x-transition x-show="false" x-transition x-transition.duration.500ms>
+  <div
+    class="market forex grid grid-cols-4 max-md:grid-cols-2 gap-10 max-md:gap-5"
+    x-transition
+    x-show="false"
+    x-transition
+    x-transition.duration.500ms
+  >
     <template x-for="asset in forex" :key="asset.currency" class="forex">
-    <div class="text-gray-300 flex justify-between items-center text-sm bg-sub p-5 rounded-md my-5">
-      <div class="flex items-center gap-3 font-semibold ">
-             <img :src="static_path + asset.image" class="h-[50px] object-contain" alt="">
+      <div
+        class="cursor-pointer rounded-md bg-gray-100 py-3 justify-center font-medium text-sm gap-5 flex flex-col items-center"
+      >
+        <div class="flex items-center gap-3 font-semibold">
+          <img
+            :src="static_path + asset.image"
+            class="h-[50px] object-contain"
+            alt=""
+          />
           <p x-text="asset.currency"></p>
+        </div>
+        <p x-text="asset.rate"></p>
       </div>
-       <p x-text="asset.rate"></p>
-    </div>
-  </template>
-</div>
+    </template>
+  </div>
 
-<div class="market stocks" x-transition x-show="false" x-transition x-transition.duration.500ms>
+  <div
+    class="market stocks grid grid-cols-4 max-md:grid-cols-2 gap-10 max-md:gap-5"
+    x-transition
+    x-show="false"
+    x-transition
+    x-transition.duration.500ms
+  >
     <template x-for="asset in stocks" :key="asset.name" class="forex">
-    <div class="text-gray-300 flex justify-between items-center text-sm bg-sub p-5 rounded-md my-5">
-      <div class="flex items-center gap-3 font-semibold ">
-             <img :src="stocks_path + asset.image" class="h-[50px] object-contain" alt="">
+      <div
+        class="cursor-pointer rounded-md bg-gray-100 py-3 justify-center font-medium text-sm gap-5 flex flex-col items-center"
+      >
+        <div class="flex items-center gap-3 font-semibold">
+          <img
+            :src="stocks_path + asset.image"
+            class="h-[50px] object-contain"
+            alt=""
+          />
           <p x-text="asset.name"></p>
+        </div>
+        <p x-text="'$'+asset.price"></p>
       </div>
-       <p x-text="'$'+asset.price"></p>
-    </div>
-  </template>
-</div>
+    </template>
+  </div>
 </section>

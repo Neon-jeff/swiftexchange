@@ -1,42 +1,94 @@
 {% extends "base.html" %}
+<!--  -->
 {%load static%}
-
+<!--  -->
 {% block content %}
+<!--  -->
 {% include "components/nav.html" %}
 
-{% comment %} Header section {% endcomment %}
-<main class="bg-gray-950  text-white flex flex-col items-center">
-   <section class='w-1/2  pt-52 text-center flex flex-col gap-2  max-md:h-full px-5 pb-20 max-md:w-full relative z-[1]'>
-             <div class='bg-main w-4/5 max-md:w-full py-5 md:hidden max-md:h-1/2 -z-20  rounded-full opacity-20  shadow-2xl shadow-main blur-3xl absolute left-[50%] -translate-x-1/2'></div>
-         <h1 class=' text-5xl max-md:text-5xl font-semibold z-10' data-aos="fade-down" data-aos-duration="2000">Why We <span class='text-main'>Exist</span></h1>
-         <p class='pt-2 text-sm z-10 animate-heroparagraph'>
-Revolutionize your trading experience with our secure and user-friendly crypto broker platform. Trade seamlessly and explore endless possibilities!</p>
-         {% comment %} button holder {% endcomment %}
-         <div class='pt-2 flex justify-center'>
-            <a href="{%url 'sign-up'%}" class='bg-main p-3 px-10 rounded-full hover:-translate-y-2  mx-2 transition duration-150 ease-in'>Get Started</a>
-         </div>
-         <div class='bg-main w-4/5 max-md:w-full py-5 h-1/2 max-md:h-1/2  rounded-full opacity-20  shadow-2xl shadow-main blur-3xl absolute left-[50%] -translate-x-1/2'></div>
-    </section>
-    {% comment %} main content {% endcomment %}
-    <section class=" w-full bg-sub text-gray-200 p-20 max-md:px-5 flex flex-col">
-        <div>
-                    <h1 class="text-4xl max-md:text-4xl font-medium">Our Operations</h1>
-        <p class="text-main text-lg font-medium pt-2">Transparency is our Forte</p>
-        <p class="pt-6 w-full">
-QX options stands at the forefront of the cryptocurrency landscape, offering a sophisticated platform for secure and efficient financial transactions. Rooted in a commitment to privacy and transparency, QX options revolutionizes the way individuals interact with digital assets. Our platform is not just a marketplace; it's a gateway to the future of decentralized finance. With an intuitive interface, cutting-edge security protocols, and a diverse range of supported cryptocurrencies, QX options caters to both seasoned investors and newcomers. Seamlessly buy, sell, and manage your digital assets with confidence.
+<main class="bg-white text-neutral-900 flex flex-col items-center">
+  <section
+    class="w-1/2 pt-52 text-center flex flex-col gap-2 max-md:h-full px-5 pb-20 max-md:w-full relative z-[1]"
+  >
+    <div
+      class="bg-main w-4/5 max-md:w-full py-5 md:hidden max-md:h-1/2 -z-20 rounded-full opacity-20 shadow-2xl shadow-main blur-3xl absolute left-[50%] -translate-x-1/2"
+    ></div>
+    <h1
+      class="text-5xl max-md:text-5xl font-semibold z-10"
+      data-aos="fade-down"
+      data-aos-duration="2000"
+    >
+      Why We <span class="text-main">Exist</span>
+    </h1>
+    <p class="pt-2 text-sm z-10 animate-heroparagraph">
+      Revolutionize your trading experience with our secure and user-friendly
+      crypto broker platform. Trade seamlessly and explore endless
+      possibilities!
+    </p>
+    {% comment %} button holder {% endcomment %}
+    <div class="pt-2 flex justify-center">
+      <a
+        href="{%url 'sign-up'%}"
+        class="bg-main p-3 px-10 rounded-full hover:-translate-y-2 mx-2 transition duration-150 ease-in"
+        >Get Started</a
+      >
+    </div>
+    <div
+      class="bg-main w-4/5 max-md:w-full py-5 h-1/2 max-md:h-1/2 rounded-full opacity-20 shadow-2xl shadow-main blur-3xl absolute left-[50%] -translate-x-1/2"
+    ></div>
+  </section>
+  {% comment %} main content {% endcomment %}
+  <section
+    class="w-full  text-neutral-900 p-20 max-md:px-5 flex flex-col"
+  >
+    <div>
+      <h1 class="text-3xl max-md:text-3xl font-medium">Our Operations</h1>
+      <p class="text-main text-lg font-medium pt-2">
+        Transparency is our Forte
+      </p>
+      <p class="pt-6 w-3/4 max-md:w-full">
+        QX options stands at the forefront of the cryptocurrency landscape,
+        offering a sophisticated platform for secure and efficient financial
+        transactions. Rooted in a commitment to privacy and transparency, QX
+        options revolutionizes the way individuals interact with digital assets.
+        Our platform is not just a marketplace; it's a gateway to the future of
+        decentralized finance. With an intuitive interface, cutting-edge
+        security protocols, and a diverse range of supported cryptocurrencies,
+        QX options caters to both seasoned investors and newcomers. Seamlessly
+        buy, sell, and manage your digital assets with confidence. Vision: QX
+        options envisions a world where financial empowerment is decentralized,
+        accessible, and private. We strive to create a financial ecosystem where
+        individuals have full control over their assets, free from the
+        limitations of traditional financial institutions. Our vision is to
+        foster a global community that embraces the transformative power of
+        blockchain technology, ushering in an era where financial transactions
+        are not only secure and efficient but also respect the fundamental right
+        to privacy. At QX options, we are dedicated to shaping the future of
+        finance by providing innovative solutions that empower individuals to
+        navigate the evolving landscape of digital currencies. Join us on this
+        exciting journey towards a more inclusive and decentralized financial
+        future
+      </p>
+    </div>
 
-Vision:
-QX options envisions a world where financial empowerment is decentralized, accessible, and private. We strive to create a financial ecosystem where individuals have full control over their assets, free from the limitations of traditional financial institutions. Our vision is to foster a global community that embraces the transformative power of blockchain technology, ushering in an era where financial transactions are not only secure and efficient but also respect the fundamental right to privacy. At QX options, we are dedicated to shaping the future of finance by providing innovative solutions that empower individuals to navigate the evolving landscape of digital currencies. Join us on this exciting journey towards a more inclusive and decentralized financial future</p>
-        </div>
-
-        <div class="mt-10">
-                    <h1 class="text-4xl max-md:text-3xl font-medium">Next Steps</h1>
-        <p class="text-main text-lg font-medium pt-2">Start Trading Now</p>
-        <p class="pt-4 w-full">Unlock the future of finance with QX options! Experience seamless transactions, cutting-edge security, and full control over your digital assets. Join our community of innovators embracing decentralized finance. Sign up now to embark on a journey where privacy meets efficiency – your gateway to the new era of financial empowerment awaits!</p>
-                    <a href="{%url 'sign-up'%}" class='bg-main block w-1/5 text-center text-white max-md:w-4/5 p-3 px-10 rounded-full hover:-translate-y-2 mt-5 transition duration-150 ease-in'>Get Started</a>
-        </div>
-    </section>
+    <div class="mt-10">
+      <h1 class="text-3xl max-md:text-3xl font-medium">Next Steps</h1>
+      <p class="text-main text-lg font-medium pt-2">Start Trading Now</p>
+      <p class="pt-4 w-3/4 max-md:w-full">
+        Unlock the future of finance with QX options! Experience seamless
+        transactions, cutting-edge security, and full control over your digital
+        assets. Join our community of innovators embracing decentralized
+        finance. Sign up now to embark on a journey where privacy meets
+        efficiency – your gateway to the new era of financial empowerment
+        awaits!
+      </p>
+      <a
+        href="{%url 'sign-up'%}"
+        class="bg-main block w-1/5 text-center text-white max-md:w-4/5 p-3 px-10 rounded-full hover:-translate-y-2 mt-5 transition duration-150 ease-in"
+        >Get Started</a
+      >
+    </div>
+  </section>
 </main>
-
 
 {% endblock content %}

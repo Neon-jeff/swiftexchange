@@ -29,10 +29,10 @@
         {%include 'components/logo.html'%}
         <p class="text-sm text-black font-semibold text-center">Krakends</p>
       </a>
-      <h1 class=" text-xl font-medium   flex items-end gap-2">
+      <h1 class=" text-xl font-medium mt-10  flex items-end gap-2">
      Verify Your Email
       </h1>
-      <p >enter the 6 digit otp sent to your inbox</p>
+      <p class="text-xs">enter the 6 digit otp sent to your inbox</p>
       <input type="text" inputmode="numeric" class="border border-neutral-900 mt-5 rounded-md p-3 bg-transparent" placeholder="enter">
       
       <p>Didn't get your otp? <a href="{%url 'resend'%}" class="text-main font-semibold">Resend OTP</a></p>

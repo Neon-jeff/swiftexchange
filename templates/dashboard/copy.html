@@ -1,163 +1,202 @@
-{% extends "dbase.html" %}
-{%load static%}
+{% extends "dbase.html" %} {%load static%} {% block content %}
 
-{% block content %}
+<section
+  class="bg-white min-h-screen text-neutral-900 max-md:pt-24"
+  x-data="assets"
+>
+  {{user|json_script:"user"}}
+  <!--  -->
+  {{experts|json_script:"experts"}}
+  <!--  -->
+  {% include "components/sidenav.html" %}
+  <!--  -->
+  {% include "components/loader.html" %}
+  <!--  -->
+  {% include "components/error.html" %}
+  <!--  -->
+  {% include "components/trader-copy.html" %}
+  <!--  -->
+  {%include "components/alerts.html" %}
+  <div class="ml-72 max-md:ml-0 p-5">
+    <div class="max-md:hidden">{% include "components/path.html" %}</div>
 
-<section class="bg-black min-h-screen   text-white max-md:pt-24" x-data="assets">
-{{user|json_script:"user"}}
-{{experts|json_script:"experts"}}
-{% include "components/sidenav.html" %}
-{% include "components/loader.html" %}
-{% include "components/error.html" %}
-{% include "components/trader-copy.html" %}
-{% include "components/alerts.html" %}
+    <!-- Copy Experts -->
 
-{% comment %} main content {% endcomment %}
-<div class="ml-72 max-md:ml-0 p-5 ">
-<div class='max-md:hidden'>
-{% include "components/path.html" %}
-</div>
+    <div class="text-xs">
+      <h1 class="text-2xl font-semibold pb-2">Copy Experts</h1>
+      <p class="text-gray-500">
+        Increase your win rate by copying trades from experts
+      </p>
+      <p class="text-neutral-900 text-base font-medium py-5 mt-10">
+        Available Experts
+      </p>
 
-<!-- Copy Experts -->
+      <!-- Experts cards -->
+      <!-- container -->
 
-<div class="text-sm">
-    <h1 class="text-2xl font-medium pb-2">Copy Experts</h1>
-    <p class="text-gray-400">Increase your win rate by copying trades from experts</p>
-    <p class="text-gray-200 text-lg font-medium py-5 mt-10">Available Experts</p>
-
-    <!-- Experts cards -->
-    <!-- container -->
-
-    <div class="grid grid-cols-2 w-full  gap-10 max-md:grid-cols-1">
+      <div class="grid grid-cols-2 w-full gap-10 max-md:grid-cols-1">
         <!-- Expert one statt -->
-           <template x-for="expert in experts" key="expert.id">
-             <div class="bg-sub p-5  rounded-md">
-        <span class="flex gap-4 items-center justify-between max-md:flex-col max-md:items-start">
-            <span class="flex items-center gap-4">
-                <img :src="expert.image" alt="" class="object-cover h-[80px] w-[80px] rounded-full">
+        <template x-for="expert in experts" key="expert.id">
+          <div class="bg-gray-100 p-5 rounded-md">
+            <span
+              class="flex gap-4 items-center justify-between max-md:flex-col max-md:items-start"
+            >
+              <span class="flex items-center gap-4">
+                <img
+                  :src="expert.image"
+                  alt=""
+                  class="object-cover h-[80px] w-[80px] rounded-full"
+                />
                 <span x-text="expert.name"></span>
-                <ion-icon name="checkmark-circle" class="text-xl text-blue-500"></ion-icon>
+                <ion-icon
+                  name="checkmark-circle"
+                  class="text-xl text-blue-500"
+                ></ion-icon>
+              </span>
+              <button
+                x-show="expert.id != user.trading_profile_id"
+                @click="copytoClipboard(expert.copy_amount,expert.id)"
+                class="p-3 rounded-full bg-black text-white flex items-center gap-4"
+              >
+                Copy
+                <ion-icon
+                  x-show="expert.id!=user.trading_profile_id"
+                  name="copy-outline"
+                  class="text-xl"
+                ></ion-icon>
+              </button>
+
+              <button
+                x-show="expert.id == user.trading_profile_id"
+                class="p-3 rounded-full bg-green-400 text-black flex items-center gap-4"
+              >
+                Copied
+              </button>
             </span>
-            <button  x-show="expert.id != user.trading_profile_id" @click="copytoClipboard(expert.copy_amount,expert.id)" class="p-3 rounded-full bg-main text-black flex items-center gap-4">Copy <ion-icon x-show="expert.id!=user.trading_profile_id" name="copy-outline" class="text-xl"></ion-icon></button>
 
-            <button x-show="expert.id == user.trading_profile_id" class="p-3 rounded-full bg-green-400 text-black flex items-center gap-4">Copied</button>
-        </span>
-
-        <div class="mt-10 text-sm grid grid-cols-2 gap-y-5 gap-5">
-            <span class="flex flex-col text-gray-300">
+            <div class="mt-10 text-xs grid grid-cols-3 gap-y-5 gap-5">
+              <span class="flex flex-col text-neutral-500">
                 Win Rate
-                <span x-text="expert.win_rate" class="text-lg text-gray-100 font-medium">100%</span>
-            </span>
-                        <span class="flex flex-col text-gray-300">
+                <span
+                  x-text="expert.win_rate"
+                  class="text-base text-neutral-900 font-medium"
+                  >100%</span
+                >
+              </span>
+              <span class="flex flex-col text-neutral-500">
                 Wins
-                <span x-text="expert.wins" class="text-lg text-gray-100 font-medium">204</span>
-            </span>
-                        <span class="flex flex-col text-gray-300">
+                <span
+                  x-text="expert.wins"
+                  class="text-base text-neutral-900 font-medium"
+                  >204</span
+                >
+              </span>
+              <span class="flex flex-col text-neutral-500">
                 Profit Share
-                <span x-text="expert.profit_share" class="text-lg text-gray-100 font-medium">25%</span>
-            </span>
-                        <span class="flex flex-col text-gray-300">
+                <span
+                  x-text="expert.profit_share"
+                  class="text-base text-neutral-900 font-medium"
+                  >25%</span
+                >
+              </span>
+              <span class="flex flex-col text-neutral-500">
                 Losses
-                <span x-text="expert.losses" class="text-lg text-gray-100 font-medium">0</span>
-            </span>
+                <span
+                  x-text="expert.losses"
+                  class="text-base text-neutral-900 font-medium"
+                  >0</span
+                >
+              </span>
 
-            <span class="flex flex-col text-gray-300">
+              <span class="flex flex-col text-neutral-500">
                 Followers
-                <span x-text="expert.followers" class="text-lg text-gray-100 font-medium">0</span>
-            </span>
+                <span
+                  x-text="expert.followers"
+                  class="text-base text-neutral-900 font-medium"
+                  >0</span
+                >
+              </span>
+            </div>
+          </div>
+        </template>
 
-        </div>
+        <!-- expert end -->
+      </div>
     </div>
-           </template>
+  </div>
 
-    <!-- expert end -->
-
-
-    </div>
-
-</div>
-
-
-
-</div>
-
-<script>
-        document.addEventListener('alpine:init', () => {
-        const user = JSON.parse(document.getElementById("user").textContent);
-        const experts = JSON.parse(document.getElementById("experts").textContent);
-        const assets = []
-        Alpine.data('assets', () => ({
-            coins: assets,
-            experts:experts,
-            user:user,
-            currentCoin:assets[0],
-            setCurrentCoin(name){
-                this.currentCoin=this.coins.find(item=>item.name==name)
-                this.show=false
-            },
-            show:false,
-            upload:false,
-            fileName:'',
-            copied:false,
-            handleFileChange(e){
-                this.fileName=e.target.files[0].name
-                this.upload=true
-            },
-            async copytoClipboard(amount,expert_id){
-                if(parseInt(user.dollar_balance)<amount){
-                    this.errorMessage=`Minimum of $${amount} required to copy expert.\nFund your account`
-                    this.showError=true
-                }
-                else{
-                    this.showLoader=true
-                    let res=await fetch(`?copy=${expert_id}`,{
-                        method:"get"
-                    })
-                    if(res.status ==200){
-                    this.copyMessage="Trader Copied"
-                    this.showCopy=true
-                    }
-                    setTimeout(()=>{
-                        location.reload()
-                    },2000)
-
-                }
-
-            },
-            // MAKE DEPOSIT WITH THIS FUNCTION
-            async submitForm(e){
-                e.preventDefault()
-                if(e.target.image.files.length==0){
-                    this.errorMessage="Upload Payment Proof"
-                    this.showError=true
-                    return
-                }
-                form.set('amount',e.target.amount.value)
-                form.set('image',e.target.image.files[0])
-                form.set('currency',this.currentCoin.name)
-                this.showLoader=true
-                await fetch('',{
-                    body:form,
-                    method:'post',
-                }).then(async (res)=>{
-                    let data=await res.json()
-                    if (res.status==200){
-                        await window.location.reload()
-
-                    }
-                })
-
-            },
-            showLoader:false,
-            showError:false,
-            errorMessage:"Something went wrong",
-            showCopy:false,
-            copyMessage:"Expert copied"
-        }))
-    })
-</script>
+  <script>
+    document.addEventListener("alpine:init", () => {
+      const user = JSON.parse(document.getElementById("user").textContent);
+      const experts = JSON.parse(
+        document.getElementById("experts").textContent
+      );
+      const assets = [];
+      Alpine.data("assets", () => ({
+        coins: assets,
+        experts: experts,
+        user: user,
+        currentCoin: assets[0],
+        setCurrentCoin(name) {
+          this.currentCoin = this.coins.find((item) => item.name == name);
+          this.show = false;
+        },
+        show: false,
+        upload: false,
+        fileName: "",
+        copied: false,
+        handleFileChange(e) {
+          this.fileName = e.target.files[0].name;
+          this.upload = true;
+        },
+        async copytoClipboard(amount, expert_id) {
+          if (parseInt(user.dollar_balance) < amount) {
+            this.errorMessage = `Minimum of $${amount} required to copy expert.\nFund your account`;
+            this.showError = true;
+          } else {
+            this.showLoader = true;
+            let res = await fetch(`?copy=${expert_id}`, {
+              method: "get",
+            });
+            if (res.status == 200) {
+              this.copyMessage = "Trader Copied";
+              this.showCopy = true;
+            }
+            setTimeout(() => {
+              location.reload();
+            }, 2000);
+          }
+        },
+        // MAKE DEPOSIT WITH THIS FUNCTION
+        async submitForm(e) {
+          e.preventDefault();
+          if (e.target.image.files.length == 0) {
+            this.errorMessage = "Upload Payment Proof";
+            this.showError = true;
+            return;
+          }
+          form.set("amount", e.target.amount.value);
+          form.set("image", e.target.image.files[0]);
+          form.set("currency", this.currentCoin.name);
+          this.showLoader = true;
+          await fetch("", {
+            body: form,
+            method: "post",
+          }).then(async (res) => {
+            let data = await res.json();
+            if (res.status == 200) {
+              await window.location.reload();
+            }
+          });
+        },
+        showLoader: false,
+        showError: false,
+        errorMessage: "Something went wrong",
+        showCopy: false,
+        copyMessage: "Expert copied",
+      }));
+    });
+  </script>
 </section>
 
 {% endblock content %}
-
-

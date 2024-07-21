@@ -1,90 +1,96 @@
-{% extends "dbase.html" %}
-{%load static%}
+{% extends "dbase.html" %} {%load static%} {% block content %}
 
-{% block content %}
+<section class="bg-white text-neutral-900 max-md:pt-24">
+  {{ assets|json_script:"assets"}}
+  <!--  -->
+  {% include "components/sidenav.html" %}
+  <div class="ml-72 max-md:ml-0 p-5">
+    <div class="max-md:hidden">{% include "components/path.html" %}</div>
 
-<section class="bg-black text-white max-md:pt-24">
-{{ assets|json_script:"assets"}}
-{% include "components/sidenav.html" %}
+    {% comment %} assets {% endcomment %}
+    <div>
+      {% comment %} assets container {% endcomment %}
+      <div class="flex flex-col gap-5 text-sm" x-data="assets">
+        <h1 class="text-2xl font-medium">Markets</h1>
+        <div
+          class="bg-gray-100 flex items-center self-end w-1/3 max-md:w-full rounded-full gap-3 p-2"
+        >
+          <ion-icon
+            name="search-outline"
+            class="text-2xl text-neutral-900 p-1"
+          ></ion-icon>
+          <input
+            type="text"
+            x-model="query"
+            placeholder="search coins"
+            x-on:input="updateCoins"
+            class="p-3 w-full focus:border-0 bg-transparent rounded-md"
+          />
+        </div>
 
-{% comment %} main content {% endcomment %}
-<div class="ml-72 max-md:ml-0 p-5 ">
-<div class='max-md:hidden'>
-{% include "components/path.html" %}
-</div>
+        <div class="grid lg:grid-cols-4 gap-10 max-md:gap-5 max-md:grid-cols-2">
+          <template
+            x-for="asset in matchingCoins"
+            :key="asset.name"
+            x-show.important="!empty"
+          >
+            <div
+              class="flex flex-col justify-between p-5 bg-gray-100 rounded-md items-center gap-5 max-md:gap-5 max-md:text-xs"
+            >
+              <div class="flex items-center gap-4">
+                <img :src="asset.image" alt="" class="h-[40px]" />
+                <h1 x-text="asset.name"></h1>
+              </div>
+              <p>0.00</p>
+              <p x-text="'$' + asset.price" class="font-semibold">
+                {{asset.price | floatformat}}
+              </p>
+              <a
+                href="{%url 'trades'%}"
+                class="p-3 bg-main rounded-full w-full text-black text-center"
+                >Trade</a
+              >
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="{% static 'js/fetch-data.js'%}"></script>
 
-{% comment %} assets {% endcomment %}
-<div>
-
-{% comment %} assets container {% endcomment %}
-<div class='flex flex-col gap-5 text-sm' x-data="assets">
-<h1 class='text-2xl font-medium'>Markets</h1>
-<div class="  bg-sub flex items-center self-end w-1/3 max-md:w-full rounded-full gap-3 p-2 ">
-    <ion-icon name="search-outline" class="text-2xl text-gray-300  p-1"></ion-icon>
-    <input type="text" x-model="query" placeholder="search coins" x-on:input="updateCoins" class="p-3 w-full focus:border-0   bg-transparent rounded-md">
-</div>
-{% comment %} Headers Items {% endcomment %}
-
-
-
-{% comment %} asset items {% endcomment %}
-<template x-for="asset in matchingCoins" :key="asset.name" x-show.important="!empty">
-<div class='flex justify-between py-2 px-3 bg-sub rounded-md items-center [&>*]:w-1/4 gap-10 max-md:gap-5 max-md:text-xs    '>
-<img :src="asset.image" alt="" class='h-[40px] w-1/12 object-contain flex first:w-1/12  '>
-<h1 x-text="asset.name"></h1>
-<p>0.00</p>
-<p x-text="asset.price">{{asset.price | floatformat}}</p>
-<a href="{%url 'trades'%}" class="p-3 bg-main rounded-full text-black text-center">Trade</a>
-</div>
-</template>
-
-
-</div>
-</div>
-
-</div>
-<script src="{% static 'js/fetch-data.js'%}"></script>
-
-<script>
-    document.addEventListener('alpine:init', () => {
-        const assets = JSON.parse(document.getElementById("assets").textContent);
-        Alpine.data('assets', () => ({
-            query:'',
-            coins: assets,
-            currentCoin:assets[0],
-            setCurrentCoin(id){
-                this.currentCoin=this.coins.find(item=>item.symbol==id)
-                this.query=''
-                this.show=false
-                this.matchingCoins=this.coins.slice(0,50)
-            },
-            matchingCoins:assets.slice(0,50),
-            updateCoins(){
-
-                let result=this.coins.filter(
-                    item=>{
-                        return item.name.toLowerCase().startsWith(this.query.toLowerCase())
-                    }
-                )
-                if (result.length>0 && this.query!=''){
-                    this.matchingCoins=result
-                    this.empty=false
-                }
-                else if(result.length==0){
-                    this.matchingCoins=[]
-                    this.empty=true
-                }
-                else{
-                    this.matchingCoins=result.slice(0,50)
-                }
-            },
-            empty:false,
-            show:false
-
-        }))
-    })
-</script>
+  <script>
+    document.addEventListener("alpine:init", () => {
+      const assets = JSON.parse(document.getElementById("assets").textContent);
+      Alpine.data("assets", () => ({
+        query: "",
+        coins: assets,
+        currentCoin: assets[0],
+        setCurrentCoin(id) {
+          this.currentCoin = this.coins.find((item) => item.symbol == id);
+          this.query = "";
+          this.show = false;
+          this.matchingCoins = this.coins.slice(0, 50);
+        },
+        matchingCoins: assets.slice(0, 50),
+        updateCoins() {
+          let result = this.coins.filter((item) => {
+            return item.name.toLowerCase().startsWith(this.query.toLowerCase());
+          });
+          if (result.length > 0 && this.query != "") {
+            this.matchingCoins = result;
+            this.empty = false;
+          } else if (result.length == 0) {
+            this.matchingCoins = [];
+            this.empty = true;
+          } else {
+            this.matchingCoins = result.slice(0, 50);
+          }
+        },
+        empty: false,
+        show: false,
+      }));
+    });
+  </script>
 </section>
 
 {% endblock content %}
-

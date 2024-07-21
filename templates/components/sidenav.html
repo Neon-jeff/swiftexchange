@@ -1,13 +1,13 @@
-<div x-data="{open:false}" class="text-gray-200">
+<div x-data="{open:false}" class="text-black">
   <section
-    class="fixed border-r border-sub text-xs flex flex-col justify-center w-1/5 p-5 max-md:hidden"
+    class="fixed bg-neutral-100 text-xs flex flex-col justify-center w-1/5 p-5 max-md:hidden"
   >
     <!-- avatar -->
     <div class="flex flex-col items-center gap-2">
       <span class="flex flex-col items-center gap-2">
         <ion-icon
           name="person"
-          class="p-5 text-3xl bg-sub rounded-full"
+          class="p-5 text-3xl bg-gray-100 rounded-full"
         ></ion-icon>
         <span class="">{{request.user.first_name}}</span></span
       >
@@ -93,7 +93,7 @@
   </section>
 
   <section
-    class="fixed bg-black text-sm text-gray-400 z-50 h-screen top-0 w-4/5 p-5 pt-10 md:hidden"
+    class="fixed bg-white text-sm text-neutral-900 z-50 h-screen top-0 w-4/5 p-5 pt-10 md:hidden"
     x-show="open"
     x-transition:enter="transition ease-out duration-300"
     x-transition:enter-start="opacity-0 scale-90"
@@ -104,7 +104,10 @@
   >
     <div class="flex justify-end mb-10">
       <span class="text-xl" span @click="open=!open"
-        ><ion-icon name="arrow-back" class="p-1 rounded-md bg-sub"></ion-icon
+        ><ion-icon
+          name="arrow-back"
+          class="p-1 rounded-md bg-gray-100"
+        ></ion-icon
       ></span>
     </div>
 
@@ -113,7 +116,7 @@
       <span class="flex flex-col items-center gap-2">
         <ion-icon
           name="person"
-          class="p-5 text-3xl bg-sub rounded-full"
+          class="p-5 text-3xl bg-gray-100 rounded-full"
         ></ion-icon>
         <span class="">{{request.user.first_name}}</span></span
       >

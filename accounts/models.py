@@ -13,7 +13,7 @@ class CopyTrader(models.Model):
     losses=models.CharField(null=True,blank=True,max_length=200)
     profit_share=models.CharField(null=True,blank=True,max_length=200)
     copy_amount=models.IntegerField(default=0,null=True,blank=True)
-    image=CloudinaryField('image',null=True,blank=True)
+    image=models.ImageField(upload_to='copy-traders',null=True,blank=True)
     followers=models.IntegerField(default=0,null=True,blank=True)
 
     def __str__(self):

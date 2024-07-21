@@ -1,38 +1,43 @@
-<section class="fixed bottom-nav text-gray-400 w-full left-1/2 text-xs -translate-x-1/2 hidden max-md:flex justify-center gap-6 bg-black
-bottom-0 rounded-t-3xl p-3  z-[2]">
+<section
+  class="fixed bottom-nav text-gray-400 w-full left-1/2 text-xs -translate-x-1/2 hidden max-md:flex justify-center gap-6 bg-white bottom-0 rounded-t-3xl p-3 z-[2]"
+>
+  <a href="{%url 'trades'%}" class="flex flex-col gap-1 items-center">
+    <ion-icon name="analytics" class="text-xl"></ion-icon>
+    <span>Trades</span>
+  </a>
 
-        <a href="{%url 'trades'%}" class=" flex flex-col gap-1 items-center ">
-        <ion-icon name="analytics" class="text-xl"></ion-icon>
-        <span>Trades</span>
-    </a>
+  <a href="{%url 'select'%}" class="flex flex-col gap-1 items-center">
+    <ion-icon name="wallet" class="text-xl"></ion-icon>
+    <span>Deposit</span>
+  </a>
 
-            <a href="{%url 'select'%}" class=" flex flex-col gap-1 items-center ">
-        <ion-icon name="wallet" class="text-xl"></ion-icon>
-        <span>Deposit</span>
-    </a>
+  <a
+    href="{%url 'dashboard'%}"
+    class="flex flex-col -translate-y-5 bg-white p-3 rounded-full gap-1 items-center"
+  >
+    <ion-icon name="home" class="text-xl"></ion-icon>
+    <span>Dashboard</span>
+  </a>
 
-        <a href="{%url 'dashboard'%}" class=" flex flex-col -translate-y-5  bg-black p-3 rounded-full gap-1 items-center ">
-        <ion-icon name="home" class="text-xl"></ion-icon>
-        <span>Dashboard</span>
-    </a>
+  <a href="{%url 'markets'%}" class="flex flex-col gap-1 items-center">
+    <ion-icon name="bar-chart" class="text-xl"></ion-icon>
+    <span>Markets</span>
+  </a>
 
-                    <a href="{%url 'markets'%}" class=" flex flex-col gap-1 items-center ">
-        <ion-icon name="bar-chart" class="text-xl"></ion-icon>
-        <span>Markets</span>
-    </a>
+  <a href="{%url 'copy'%}" class="flex flex-col gap-1 items-center">
+    <ion-icon name="copy" class="text-xl"></ion-icon>
+    <span>Experts</span>
+  </a>
 
-                    <a href="{%url 'copy'%}" class=" flex flex-col gap-1 items-center ">
-        <ion-icon name="copy" class="text-xl"></ion-icon>
-        <span>Experts</span>
-    </a>
-
-    <script>
-        let navItems=Array.from(document.querySelectorAll('.bottom-nav a'))
-        navItems.forEach((item)=>{
-            let pathArr=location.pathname.split('/')
-            if(item.textContent.toLocaleLowerCase().match(pathArr[pathArr.length-2])){
-                item.classList.add('text-main')
-            }
-        })
-    </script>
+  <script>
+    let navItems = Array.from(document.querySelectorAll(".bottom-nav a"));
+    navItems.forEach((item) => {
+      let pathArr = location.pathname.split("/");
+      if (
+        item.textContent.toLocaleLowerCase().match(pathArr[pathArr.length - 2])
+      ) {
+        item.classList.add("text-main");
+      }
+    });
+  </script>
 </section>

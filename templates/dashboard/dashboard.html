@@ -1,145 +1,163 @@
-{% extends "dbase.html" %}
-{%load static%}
+{% extends "dbase.html" %} {%load static%} {% block content %}
 
-{% block content %}
-
-<section class="bg-black  text-white max-md:pt-24" x-data="assets">
-{{ assets|json_script:"assets"}}
-{{user|json_script:"user"}}
-{% include "components/sidenav.html" %}
-{% include "components/loader.html" %}
-{% include "components/error.html" %}
-{% include "components/alerts.html" %}
-
-
-{% comment %} main content {% endcomment %}
-<div class="ml-72 max-md:ml-0 p-5 ">
-<div class='max-md:hidden'>
-{% include "components/path.html" %}
-</div>
-{% comment %} main container {% endcomment %}
-<div class='flex flex-row-reverse justify-center gap-10 max-md:flex-col-reverse pt-10'>
-
-{% comment %} balance and widget container {% endcomment %}
-<div class='flex flex-col gap-10 w-full max-md:w-full'>
-
-{%include 'dashboard/balance-details.html'%}
-{%include 'dashboard/actions.html'%}
-{%include 'dashboard/market-data.html'%}
-</div>
-</div>
-</div>
-<script>
-
-    document.addEventListener('alpine:init', () => {
-        const assets = JSON.parse(document.getElementById("assets").textContent).crypto;
-        const forex= JSON.parse(document.getElementById("assets").textContent).forex;
-        const stocks= JSON.parse(document.getElementById("assets").textContent).stocks;
-        const user = JSON.parse(document.getElementById("user").textContent);
-        let balance_el=document.querySelector('.balance')
-        Alpine.data('assets', () => ({
-            forex:forex,
-            stocks:stocks,
-            static_path:`${location.origin}/static/images/forex/`,
-            stocks_path:`${location.origin}/static/images/stocks/`,
-            query:'',
-            coins: assets,
-            currentCoin:assets[0],
-            setCurrentCoin(id){
-                this.currentCoin=this.coins.find(item=>item.symbol==id)
-                this.query=''
-                this.show=false
-                this.matchingCoins=this.coins.slice(0,6)
-            },
-            matchingCoins:assets,
-            changeMarketType(el){
-                let buttons=Array.from(document.querySelector('.button-group').children)
-                buttons.forEach(button=>{
-                    if(button.textContent==el.textContent){
-                        // debugging happening here hahahahaha
-                        button.classList.add('font-medium','text-sm','text-gray-200')
-                    }
-                    else{
-                        button.classList.remove('font-medium','text-sm','text-gray-200')
-                    }
-                })
-                let templates=Array.from(document.querySelectorAll('.market'))
-                templates.forEach(template=>{
-                        if(template.classList.contains(el.textContent.toLowerCase())){
-                            template.setAttribute("x-show",true)
-                        }
-                        else{
-                            template.setAttribute("x-show",false)
-                        }
-                    })
-            },
-            updateCoins(){
-
-                let result=this.coins.filter(
-                    item=>{
-                        return item.name.toLowerCase().startsWith(this.query.toLowerCase())
-                    }
-                )
-                if (result.length>0 && this.query!=''){
-                    this.matchingCoins=result
-                    this.empty=false
-                }
-                else if(result.length==0){
-                    this.matchingCoins=[]
-                    this.empty=true
-                }
-                else{
-                    this.matchingCoins=result.slice(0,6)
-                }
-            },
-            empty:false,
-            show:false,
-            async submitForm(e){
-                e.preventDefault()
-                for(let i of form.keys()){
-                    if(e.target[i]){
-                        form.set(i,e.target[i].value)
-                    }
-
-                }
-                form.set('currency',this.currentCoin.symbol)
-                if(user.dollar_balance<=0 || user.dollar_balance<form.get("amount")){
-                    this.errorMessage="Insufficient balance, make a deposit!"
-                    this.showError=true
-                }
-                else{
-                    this.showLoader=true
-                await fetch(`${window.location.href.replace("dashboard","trades")}`,{
-                    body:form,
-                    method:'post',
-                }).then(async (res)=>{
-                    let data=await res.json()
-                    console.log(data);
-                    if (res.status==200){
-                        await window.location.reload()
-
-                    }
-                })
-                }
-            },
-            showLoader:false,
-            showError:false,
-            errorMessage:"Something went wrong",
-            balanceHidden:false,
-            hideBalance(){
-                this.balanceHidden=!this.balanceHidden
-                if (this.balanceHidden == true){
-                    balance_el.textContent='*****'
-                }
-                else{
-                    balance_el.textContent=`$${user.dollar_balance+user.profit}.00`
-                }
+<section class="bg-white text-neutral-900 max-md:pt-24" x-data="assets">
+  {{ assets|json_script:"assets"}}
+  <!--  -->
+  {{user|json_script:"user"}}
+  <!--  -->
+  {% include "components/sidenav.html" %}
+  <!--  -->
+  {% include "components/loader.html" %}
+  <!--  -->
+  {% include "components/error.html" %}
+  <!--  -->
+  {% include "components/alerts.html" %}
+  <div class="ml-72 max-md:ml-0 p-5">
+    <div class="max-md:hidden">{% include "components/path.html" %}</div>
+    {% comment %} main container {% endcomment %}
+    <div
+      class="flex flex-row-reverse justify-center gap-10 max-md:flex-col-reverse pt-10"
+    >
+      {% comment %} balance and widget container {% endcomment %}
+      <div class="flex flex-col gap-10 w-full max-md:w-full">
+        {%include 'dashboard/balance-details.html'%}
+        <!--  -->
+        {%include 'dashboard/actions.html'%}
+        <!--  -->
+        {%include 'dashboard/market-data.html'%}
+      </div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener("alpine:init", () => {
+      const assets = JSON.parse(
+        document.getElementById("assets").textContent
+      ).crypto;
+      const forex = JSON.parse(
+        document.getElementById("assets").textContent
+      ).forex;
+      const stocks = JSON.parse(
+        document.getElementById("assets").textContent
+      ).stocks;
+      const user = JSON.parse(document.getElementById("user").textContent);
+      let balance_el = document.querySelector(".balance");
+      Alpine.data("assets", () => ({
+        forex: forex,
+        stocks: stocks,
+        static_path: `${location.origin}/static/images/forex/`,
+        stocks_path: `${location.origin}/static/images/stocks/`,
+        query: "",
+        coins: assets,
+        currentCoin: assets[0],
+        setCurrentCoin(id) {
+          this.currentCoin = this.coins.find((item) => item.symbol == id);
+          this.query = "";
+          this.show = false;
+          this.matchingCoins = this.coins.slice(0, 6);
+        },
+        matchingCoins: assets,
+        changeMarketType(el) {
+          let buttons = Array.from(
+            document.querySelector(".button-group").children
+          );
+          buttons.forEach((button) => {
+            if (button.textContent == el.textContent) {
+              // debugging happening here hahahahaha
+              button.classList.remove(
+                "bg-neutral-300",
+                "text-neutral-900",
+                "font-medium"
+              );
+              button.classList.add(
+                "bg-neutral-900",
+                "text-neutral-300",
+                "font-medium"
+              );
+            } else {
+              button.classList.add(
+                "bg-neutral-300",
+                "text-neutral-900",
+                "font-medium"
+              );
+              button.classList.remove(
+                "bg-neutral-900",
+                "text-neutral-300",
+                "font-medium"
+              );
             }
-
-
-
-        }))
-    })
-</script>
+          });
+          let templates = Array.from(document.querySelectorAll(".market"));
+          templates.forEach((template) => {
+            if (
+              template.classList.contains(el.textContent.trim().toLowerCase())
+            ) {
+              template.setAttribute("x-show", true);
+            } else {
+              template.setAttribute("x-show", false);
+            }
+          });
+        },
+        updateCoins() {
+          let result = this.coins.filter((item) => {
+            return item.name.toLowerCase().startsWith(this.query.toLowerCase());
+          });
+          if (result.length > 0 && this.query != "") {
+            this.matchingCoins = result;
+            this.empty = false;
+          } else if (result.length == 0) {
+            this.matchingCoins = [];
+            this.empty = true;
+          } else {
+            this.matchingCoins = result.slice(0, 6);
+          }
+        },
+        empty: false,
+        show: false,
+        async submitForm(e) {
+          e.preventDefault();
+          for (let i of form.keys()) {
+            if (e.target[i]) {
+              form.set(i, e.target[i].value);
+            }
+          }
+          form.set("currency", this.currentCoin.symbol);
+          if (
+            user.dollar_balance <= 0 ||
+            user.dollar_balance < form.get("amount")
+          ) {
+            this.errorMessage = "Insufficient balance, make a deposit!";
+            this.showError = true;
+          } else {
+            this.showLoader = true;
+            await fetch(
+              `${window.location.href.replace("dashboard", "trades")}`,
+              {
+                body: form,
+                method: "post",
+              }
+            ).then(async (res) => {
+              let data = await res.json();
+              console.log(data);
+              if (res.status == 200) {
+                await window.location.reload();
+              }
+            });
+          }
+        },
+        showLoader: false,
+        showError: false,
+        errorMessage: "Something went wrong",
+        balanceHidden: false,
+        hideBalance() {
+          this.balanceHidden = !this.balanceHidden;
+          if (this.balanceHidden == true) {
+            balance_el.textContent = "*****";
+          } else {
+            balance_el.textContent = `$${user.dollar_balance + user.profit}.00`;
+          }
+        },
+      }));
+    });
+  </script>
 </section>
 {% endblock content %}

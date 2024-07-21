@@ -1,7 +1,7 @@
 {% extends "base.html" %} {%load static%} {% block content %}
 <!-- include nav -->
 {% include "components/nav.html" %}
-<main class="bg-gray-950 text-white flex flex-col items-center">
+<main class="bg-white text-neutral-900 flex flex-col items-center">
   <section
     class="w-1/2 pt-52 text-center flex flex-col gap-2 max-md:h-full px-5 pb-20 max-md:w-full relative z-[1]"
   >
@@ -20,7 +20,7 @@
     <div class="pt-2 flex justify-center">
       <a
         href="{%url 'sign-up'%}"
-        class="bg-main p-3 px-10 rounded-full hover:-translate-y-2 mx-2 transition duration-150 ease-in"
+        class="bg-main p-3 px-10 z-50 rounded-full hover:-translate-y-2 mx-2 transition duration-150 ease-in"
         >Get Started</a
       >
     </div>
