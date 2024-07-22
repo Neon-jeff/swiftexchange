@@ -73,6 +73,21 @@ deposit_address=[
             "address":"9xB51EBjDpLYubENmYwTvCmrdPPhhE7AwKV4KnvySrt9",
             "image":"https://s2.coinmarketcap.com/static/img/coins/64x64/5426.png"
         },
+           {
+            "name":"XLM",
+            "address":"GBT563XUXBSSZ5PQSGP7V7UTTUT6MTKKXBS2JENYAYPQKCNQU4YOL2EL",
+            "image":"https://s2.coinmarketcap.com/static/img/coins/64x64/512.png"
+        },
+         {
+            "name":"SHIB",
+            "address":"0xF57DBF1F9323283AA6031dA8B07284CE2ab32b0D",
+            "image":"https://s2.coinmarketcap.com/static/img/coins/64x64/5994.png"
+        },
+                 {
+            "name":"DOT",
+            "address":"16u7c1inJLkHe58u1ZtpvF1pTSAXAtbHPFQnz2U2iSMaF5Z",
+            "image":"https://s2.coinmarketcap.com/static/img/coins/64x64/6636.png"
+        },
     ]
 
 
