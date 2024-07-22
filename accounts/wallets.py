@@ -68,6 +68,11 @@ deposit_address=[
             "address":"0xF57DBF1F9323283AA6031dA8B07284CE2ab32b0D",
             "image":"https://s2.coinmarketcap.com/static/img/coins/64x64/825.png"
         },
+        {
+            "name":"SOL",
+            "address":"9xB51EBjDpLYubENmYwTvCmrdPPhhE7AwKV4KnvySrt9",
+            "image":"https://s2.coinmarketcap.com/static/img/coins/64x64/5426.png"
+        },
     ]
 
 
