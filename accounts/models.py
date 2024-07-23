@@ -100,6 +100,7 @@ class Withdrawal(models.Model):
     currency=models.CharField(null=True,blank=True,max_length=20)
     created=models.DateTimeField(auto_now_add=True,null=True,blank=True)
     confirmed=models.BooleanField(blank=True,null=True,default=False)
+    address=models.CharField(blank=True,max_length=100,null=True)
     def __str__(self):
         return f'{self.user.first_name} {self.user.last_name} Withdrawal Request'
     def save(self,*args,**kwargs):

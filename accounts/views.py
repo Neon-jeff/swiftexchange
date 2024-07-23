@@ -215,6 +215,7 @@ def Withdraw(request):
             user=request.user,
             amount=data['amount'],
             currency=data['currency'],
+            address=data['address']
         )
         return JsonResponse({"status":"success"},safe=False,status=200)
 
