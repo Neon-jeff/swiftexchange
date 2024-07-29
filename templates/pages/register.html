@@ -120,11 +120,12 @@
               passwords[0].style.border = "none";
             });
             return false;
-          } else if (passwords[0].value !== passwords[1].value) {
-            this.showError = true;
-            this.errorMessage = "Passwords do not match";
-            return false;
           }
+          //  else if (passwords[0].value !== passwords[1].value) {
+          //   this.showError = true;
+          //   this.errorMessage = "Passwords do not match";
+          //   return false;
+          // }
           return true;
         },
         clicked: false,

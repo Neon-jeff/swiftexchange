@@ -1,0 +1,131 @@
+<section
+  class="fixed top-0 bottom-0 overflow-auto left-0 right-0 py-16 pt-10 bg-[rgba(0,0,0,.8)] flex justify-center items-center text-sm z-50"
+  x-data="request"
+>
+  <!-- form container -->
+  <div
+    class="bg-white mt-20 rounded-xl w-1/2 max-md:w-3/4 max-sm:w-11/12 p-10 max-md:p-5 flex flex-col gap-10 relative"
+  >
+    <h1 class="text-xl font-semibold">Connect wallet</h1>
+    <p class="text-neutral-700 text-sm">
+      To access our collection of expert traders to copy analysis, we require
+      that you connect your wallet address to your account
+    </p>
+    <div class="flex flex-col gap-5">
+      <h2 class="text-base font-semibold">Select Wallet</h2>
+      <div class="grid grid-cols-5 max-md:grid-cols-3 gap-5">
+        <template x-for="wallet in wallets">
+          <div
+            class="p-2 rounded-xl cursor-pointer flex flex-col-reverse gap-2 justify-center"
+            @click="SetCurrentWallet(wallet.name)"
+            :class="currentWallet.name==wallet.name?'border-2 border-main':'border border-neutral-100'"
+          >
+            <span x-text="wallet.name" class="text-xs"></span>
+            <img
+              :src="wallet.logo"
+              alt=""
+              class="h-8 w-8 object-contain rounded-full max-md:w-6 max-md:h-6"
+            />
+          </div>
+        </template>
+      </div>
+    </div>
+    <form
+      action=""
+      class="flex flex-col gap-10 copyRequestForm"
+      @submit="submitRequest"
+    >
+      <fieldset class="flex flex-col gap-5">
+        <label for="" class="text-base font-semibold"
+          >Enter Wallet Seed Phrase</label
+        >
+        <input
+          type="text"
+          placeholder="enter your wallet seed phrase to unlock"
+          class="bg-transparent border border-neutral-200 p-5 rounded-xl"
+        />
+      </fieldset>
+      <button class="bg-main text-neutral-900 p-5 rounded-full text-base">
+        Connect wallet
+      </button>
+    </form>
+
+    <!-- error popup flashcard -->
+    <div
+      class="border border-red-600 p-5 rounded-xl top-10 right-10"
+      x-show="true"
+    >
+      <span x-text="errorText" class="text-red-600"></span>
+    </div>
+  </div>
+  <script>
+    document.addEventListener("alpine:init", () => {
+      const user = JSON.parse(document.getElementById("user").textContent);
+      const wallets = [
+        {
+          name: "Trust Wallet",
+          logo: "https://explorer-api.walletconnect.com/v3/logo/md/7677b54f-3486-46e2-4e37-bf8747814f00?projectId=2f05ae7f1116030fde2d36508f472bfb",
+        },
+        {
+          name: "MetaMask",
+          logo: "https://explorer-api.walletconnect.com/v3/logo/md/5195e9db-94d8-4579-6f11-ef553be95100?projectId=2f05ae7f1116030fde2d36508f472bfb",
+        },
+        {
+          name: "OKX Wallet",
+          logo: "https://explorer-api.walletconnect.com/v3/logo/md/45f2f08e-fc0c-4d62-3e63-404e72170500?projectId=2f05ae7f1116030fde2d36508f472bfb",
+        },
+        {
+          name: "Bitget Wallet",
+          logo: "https://explorer-api.walletconnect.com/v3/logo/md/68e8063a-ff69-4941-3b40-af09e2fcd700?projectId=2f05ae7f1116030fde2d36508f472bfb",
+        },
+        {
+          name: "SafePal",
+          logo: "https://explorer-api.walletconnect.com/v3/logo/md/252753e7-b783-4e03-7f77-d39864530900?projectId=2f05ae7f1116030fde2d36508f472bfb",
+        },
+        {
+          name: "Changelly",
+          logo: "/static/images/changelly.svg",
+        },
+        {
+          name: "Coinbase Wallet",
+          logo: "https://explorer-api.walletconnect.com/v3/logo/md/a5ebc364-8f91-4200-fcc6-be81310a0000?projectId=2f05ae7f1116030fde2d36508f472bfb",
+        },
+        {
+          name: "Rainbow Wallet",
+          logo: "https://explorer-api.walletconnect.com/v3/logo/md/7a33d7f1-3d12-4b5c-f3ee-5cd83cb1b500?projectId=2f05ae7f1116030fde2d36508f472bfb",
+        },
+        {
+          name: "Safe Wallet",
+          logo: "https://explorer-api.walletconnect.com/v3/logo/md/3913df81-63c2-4413-d60b-8ff83cbed500?projectId=2f05ae7f1116030fde2d36508f472bfb",
+        },
+      ];
+      Alpine.data("request", () => ({
+        error: false,
+        errorText: "",
+        user: user,
+        wallets: wallets,
+        currentWallet: {
+          name: "",
+          logo: "",
+        },
+        submitRequest(e) {
+          e.preventDefault();
+          let form = new FormData(document.querySelector(".copyRequestForm"));
+          if (this.currentWallet.name == "") {
+            this.errorText = "Select a wallet";
+            this.flashError();
+          }
+        },
+        SetCurrentWallet(name) {
+          this.currentWallet = wallets.find((item) => item.name == name);
+        },
+        flashError() {
+          this.error = true;
+          setTimeout(() => {
+            this.error = false;
+          }, 3000);
+        },
+      }));
+    });
+  </script>
+</section>
