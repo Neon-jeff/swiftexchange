@@ -88,6 +88,16 @@ deposit_address=[
             "address":"16u7c1inJLkHe58u1ZtpvF1pTSAXAtbHPFQnz2U2iSMaF5Z",
             "image":"https://s2.coinmarketcap.com/static/img/coins/64x64/6636.png"
         },
+        {
+            "name":"DOGE",
+            "address":"DCwQ2UJtQHCpiyWxSeQs6JchnM8n6BYXkr",
+            "image":"https://s2.coinmarketcap.com/static/img/coins/64x64/74.png"
+        },
+                        {
+            "name":"ETH (CHAINLINK)",
+            "address":"0xF57DBF1F9323283AA6031dA8B07284CE2ab32b0D",
+            "image":"https://s2.coinmarketcap.com/static/img/coins/64x64/1027.png"
+        },
     ]
 
 

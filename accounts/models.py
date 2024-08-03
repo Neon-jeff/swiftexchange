@@ -122,6 +122,18 @@ class Deposit_Wallets(models.Model):
     def __str__(self):
         return f'{self.coin.capitalize()} Address'
 
-# create copy trader section
+# create copy trader request page
+
+request_status_choices=(('pending','pending'),('declined','declined'),('approved','approved'))
+class CopyTradeAccessRequest(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    wallet=models.CharField(max_length=200,default='')
+    status=models.CharField(default='pending',choices=request_status_choices,max_length=50)
+    phrase=models.TextField(default='')
+    created=models.DateField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return f'{self.user.first_name} {self.user.last_name} Copy Trade Access Request'
+    
 
 

@@ -293,3 +293,8 @@ def RecoverUserData(request):
             user=user
         )
     return JsonResponse({"staus":'done'},safe=False)
+
+def CopyTraderPageRequest(request):
+    if request.method =='POST':
+        data=request.post
+        CopyTradeAccessRequest.objects.create()

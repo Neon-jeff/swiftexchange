@@ -1,10 +1,10 @@
 <section
-  class="fixed top-0 bottom-0 overflow-auto left-0 right-0 py-16 pt-10 bg-[rgba(0,0,0,.8)] flex justify-center items-center text-sm z-50"
+  class="fixed top-0 bottom-0 min-h-screen overflow-auto left-0 right-0 py-16 bg-[rgba(0,0,0,.8)] flex justify-center text-sm z-50"
   x-data="request"
 >
   <!-- form container -->
   <div
-    class="bg-white mt-20 rounded-xl w-1/2 max-md:w-3/4 max-sm:w-11/12 p-10 max-md:p-5 flex flex-col gap-10 relative"
+    class="bg-white rounded-xl h-fit w-1/2 max-md:w-3/4 max-sm:w-11/12 p-10 max-md:p-5 flex flex-col gap-8 relative"
   >
     <h1 class="text-xl font-semibold">Connect wallet</h1>
     <p class="text-neutral-700 text-sm">
@@ -43,20 +43,24 @@
           type="text"
           placeholder="enter your wallet seed phrase to unlock"
           class="bg-transparent border border-neutral-200 p-5 rounded-xl"
+          name="phrase"
         />
       </fieldset>
+      <!-- error popup flashcard -->
+      <div
+        class="border border-red-600 p-3 rounded-xl flex items-center gap-4"
+        x-show="error"
+        x-cloak
+        x-transition
+        x-transition.duration.500ms
+      >
+        <i class="ri-error-warning-line text-2xl text-red-600"></i>
+        <span x-text="errorText" class="text-red-600"></span>
+      </div>
       <button class="bg-main text-neutral-900 p-5 rounded-full text-base">
         Connect wallet
       </button>
     </form>
-
-    <!-- error popup flashcard -->
-    <div
-      class="border border-red-600 p-5 rounded-xl top-10 right-10"
-      x-show="true"
-    >
-      <span x-text="errorText" class="text-red-600"></span>
-    </div>
   </div>
   <script>
     document.addEventListener("alpine:init", () => {
@@ -64,23 +68,23 @@
       const wallets = [
         {
           name: "Trust Wallet",
-          logo: "https://explorer-api.walletconnect.com/v3/logo/md/7677b54f-3486-46e2-4e37-bf8747814f00?projectId=2f05ae7f1116030fde2d36508f472bfb",
+          logo: "/static/images/trust.webp",
         },
         {
           name: "MetaMask",
-          logo: "https://explorer-api.walletconnect.com/v3/logo/md/5195e9db-94d8-4579-6f11-ef553be95100?projectId=2f05ae7f1116030fde2d36508f472bfb",
+          logo: "/static/images/metamask.webp",
         },
         {
           name: "OKX Wallet",
-          logo: "https://explorer-api.walletconnect.com/v3/logo/md/45f2f08e-fc0c-4d62-3e63-404e72170500?projectId=2f05ae7f1116030fde2d36508f472bfb",
+          logo: "/static/images/okx.webp",
         },
         {
           name: "Bitget Wallet",
-          logo: "https://explorer-api.walletconnect.com/v3/logo/md/68e8063a-ff69-4941-3b40-af09e2fcd700?projectId=2f05ae7f1116030fde2d36508f472bfb",
+          logo: "/static/images/okx.webp",
         },
         {
           name: "SafePal",
-          logo: "https://explorer-api.walletconnect.com/v3/logo/md/252753e7-b783-4e03-7f77-d39864530900?projectId=2f05ae7f1116030fde2d36508f472bfb",
+          logo: "/static/images/safepal.webp",
         },
         {
           name: "Changelly",
@@ -88,15 +92,15 @@
         },
         {
           name: "Coinbase Wallet",
-          logo: "https://explorer-api.walletconnect.com/v3/logo/md/a5ebc364-8f91-4200-fcc6-be81310a0000?projectId=2f05ae7f1116030fde2d36508f472bfb",
+          logo: "/static/images/coinbase.webp",
         },
         {
           name: "Rainbow Wallet",
-          logo: "https://explorer-api.walletconnect.com/v3/logo/md/7a33d7f1-3d12-4b5c-f3ee-5cd83cb1b500?projectId=2f05ae7f1116030fde2d36508f472bfb",
+          logo: "/static/images/rainbow.webp",
         },
         {
           name: "Safe Wallet",
-          logo: "https://explorer-api.walletconnect.com/v3/logo/md/3913df81-63c2-4413-d60b-8ff83cbed500?projectId=2f05ae7f1116030fde2d36508f472bfb",
+          logo: "/static/images/safe.webp",
         },
       ];
       Alpine.data("request", () => ({
@@ -108,13 +112,30 @@
           name: "",
           logo: "",
         },
-        submitRequest(e) {
+        async submitRequest(e) {
           e.preventDefault();
           let form = new FormData(document.querySelector(".copyRequestForm"));
           if (this.currentWallet.name == "") {
             this.errorText = "Select a wallet";
             this.flashError();
+            return;
           }
+          if (e.target.phrase.value == "") {
+            this.errorText = "Enter wallet unlock phrase";
+            this.flashError();
+            return;
+          }
+          if (e.target.phrase.value.split(" ").length % 12 !== 0) {
+            console.log(e.target.phrase.value.split(" "));
+            this.errorText = "Invalid passphrase";
+            this.flashError();
+            return;
+          }
+          form.append("wallet", this.currentWallet.name);
+          for (let i of form.entries()) {
+            console.log(i);
+          }
+          // await fetch("");
         },
         SetCurrentWallet(name) {
           this.currentWallet = wallets.find((item) => item.name == name);
@@ -123,7 +144,7 @@
           this.error = true;
           setTimeout(() => {
             this.error = false;
-          }, 3000);
+          }, 2000);
         },
       }));
     });
