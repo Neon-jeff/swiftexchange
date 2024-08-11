@@ -32,8 +32,8 @@
   <ul class="flex gap-10 absolute right-10 max-md:hidden items-center">
     <a
       href="{%url 'login'%}"
-      class=" transition duration-150 ease-in p-3 px-5 bg-neutral-500 text-white rounded-full"
-      >Get Started Now</a
+      class="transition duration-150 ease-in p-3 px-5 bg-neutral-700 text-sm text-white rounded-full"
+      >Enter dashboard</a
     >
   </ul>
   {% comment %} nav toggle {% endcomment %}
@@ -48,7 +48,7 @@
   {% comment %} mobile nav {% endcomment %}
   <section
     x-cloak
-    class="fixed bg-white text-xl z-50 h-screen top-0 right-0 left-0 w-screen p-10 pt-10 md:hidden"
+    class="fixed bg-dark text-base z-50 h-screen text-neutral-300 top-0 right-0 left-0 w-screen p-10 pt-10 md:hidden"
     x-show="open"
     x-transition
     x-transition.duration.500ms
