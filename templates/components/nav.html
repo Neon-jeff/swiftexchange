@@ -1,9 +1,9 @@
 <nav
-  class="w-full z-40 flex px-5 items-center justify-center max-md:justify-end py-10 absolute top-0 left-0 bg-transparent text-neutral-900 text-sm"
+  class="w-full z-40 flex px-5 items-center justify-center max-md:justify-end py-10 absolute top-0 left-0 bg-transparent text-neutral-300 font-light text-sm"
   x-data="{open:false}"
 >
   <!--  -->
-  <a href="/" class="absolute top-5 left-5 scale-50"
+  <a href="/" class="absolute left-5 scale-50"
     >{%include 'components/logo.html'%}</a
   >
   <ul class="flex justify-center items-center gap-10 max-md:hidden">
@@ -31,14 +31,9 @@
   <!-- login and contact -->
   <ul class="flex gap-10 absolute right-10 max-md:hidden items-center">
     <a
-      href="mailto:help-mail@coin-mask.com"
-      class="text-main flex items-center gap-1"
-      ><ion-icon name="mail" class="text-xl"></ion-icon>Contact Us</a
-    >
-    <a
       href="{%url 'login'%}"
-      class="hover:bg-white hover:text-gray-100 transition duration-150 ease-in p-3 px-5 bg-main text-white rounded-full"
-      >Login</a
+      class=" transition duration-150 ease-in p-3 px-5 bg-neutral-500 text-white rounded-full"
+      >Get Started Now</a
     >
   </ul>
   {% comment %} nav toggle {% endcomment %}

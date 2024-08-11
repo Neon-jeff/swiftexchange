@@ -4,7 +4,7 @@
   class="flex flex-col gap-3"
   x-transition
   x-transition.duration.200ms
-  x-show="step2"
+  
 >
   <!-- progress bar full -->
   <!-- <div class="flex flex-col text-base text-gray-400">
@@ -24,7 +24,7 @@
     <label for="email">Select Country</label>
     <span
       :value="currentCountry.name"
-      class="flex items-center relative gap-5 mt-3 border border-neutral-900 p-3 rounded-md"
+      class="flex items-center relative gap-5 mt-3 border border-neutral-500 p-3 rounded-md"
       @click="show=!show"
       ><img :src="currentCountry.flag" alt="" />
       <span x-text="currentCountry.name"></span>
@@ -55,7 +55,7 @@
 
     <select
       title="name"
-      class="p-3 w-full rounded-md border border-neutral-900 bg-transparent"
+      class="p-3 w-full rounded-md border border-neutral-500 bg-transparent"
       name="state"
     >
       <template x-for="state in currentCountry.states">
@@ -69,14 +69,14 @@
       type="text"
       name="address"
       placeholder="Enter Your Address"
-      class="p-3 rounded-md bg-transparent border border-neutral-900"
+      class="p-3 rounded-md bg-transparent border border-neutral-500"
       required
     />
   </fieldset>
 
   <fieldset class="flex gap-2 flex-col">
     <label for="">Phone *</label>
-    <span class="flex rounded-md bg-transparent border border-neutral-900">
+    <span class="flex rounded-md bg-transparent border border-neutral-500">
       <select class="p-3 w-1/4 rounded-md bg-transparent" name="phone_code">
         {% for country in countries %}
         <option value="{{ country.phone_code }}" class="">
@@ -99,7 +99,7 @@
     <select
       name="currency"
       id=""
-      class="p-3 w-full rounded-md bg-transparent border border-neutral-900"
+      class="p-3 w-full rounded-md bg-transparent border border-neutral-500"
       required
     >
       <option class="" value="CAD">CAD</option>
@@ -112,7 +112,7 @@
     </select>
   </fieldset>
 
-  <div class="flex gap-4 self-end mt-3">
+  <!-- <div class="flex gap-4 self-end mt-3">
     <span
       @click="moveHome"
       class="bg-main px-3 py-3 flex items-center gap-2 cursor-pointer justify-center rounded-full text-gray-200"
@@ -126,5 +126,5 @@
       class="bg-main p-3 flex items-center gap-2 cursor-pointer justify-center rounded-full text-black"
       >Add Password <ion-icon name="chevron-forward-outline"></ion-icon
     ></span>
-  </div>
+  </div> -->
 </div>
