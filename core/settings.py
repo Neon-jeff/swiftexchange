@@ -37,6 +37,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'unfold',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,7 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
-    'compressor',
     'django_countries',
     'accounts',
 ]
@@ -75,6 +75,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+                                    'libraries':{
+                    'template_filters': 'core.template_filters',
+                }
         },
     },
 ]
@@ -146,7 +149,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-COMPRESS_ROOT = BASE_DIR /'static'
+# COMPRESS_ROOT = BASE_DIR /'static'
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles',)
@@ -161,15 +164,15 @@ STATICFILES_DIRS = [
 
 
 
-COMPRESS_ENABLED = True
+# COMPRESS_ENABLED = True
 
-STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
+# STATICFILES_FINDERS = ('compressor.finders.CompressorFinder',)
 
-STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder'
-]
+# STATICFILES_FINDERS = [
+#     'django.contrib.staticfiles.finders.FileSystemFinder',
+#     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#     'compressor.finders.CompressorFinder'
+# ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -179,6 +182,29 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS=[
    'https://krakory.up.railway.app',
-   'https://www.coin-mask.com'
+   'https://www.rog-trades.com'
 ]
 
+# UNFOLD CONFIGS
+UNFOLD={
+    "SITE_TITLE":"ROG ADMIN",
+    "SITE_HEADER":"BROKER ADMIN",
+    "SIDE_BAR":{
+        'show_all_applications':True
+    },
+        "COLORS": {
+        "primary": {
+            "50": "250 245 255",
+            "100": "243 232 255",
+            "200": "233 213 255",
+            "300": "216 180 254",
+            "400": "192 132 252",
+            "500": "#0ad4a1",
+            "600": "#0ad4a1",
+            "700": "#0ad4a1",
+            "800": "107 33 168",
+            "900": "88 28 135",
+            "950": "#0ad4a1",
+        },
+    }
+}
