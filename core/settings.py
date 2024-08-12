@@ -182,7 +182,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS=[
    'https://krakory.up.railway.app',
-   'https://www.rog-trades.com'
+   'https://www.rog-trades.com',
+   'https://rog-trades.up.railway.app'
 ]
 
 # UNFOLD CONFIGS
