@@ -2683,6 +2683,10 @@ html.theme-dark .tv-embed-widget-wrapper__body{
     height: 100%;
   }
 
+  .max-md\:h-10 {
+    height: 2.5rem;
+  }
+
   .max-md\:min-h-screen {
     min-height: 100vh;
   }
@@ -2721,6 +2725,10 @@ html.theme-dark .tv-embed-widget-wrapper__body{
 
   .max-md\:w-full {
     width: 100%;
+  }
+
+  .max-md\:w-10 {
+    width: 2.5rem;
   }
 
   .max-md\:scale-100 {
