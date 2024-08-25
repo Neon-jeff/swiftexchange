@@ -337,7 +337,6 @@ def UploadIdentityDocs(request):
 @login_required(login_url='login')
 def UpdatePassword(request):
     if request.method=='POST':
-        print(request.POST)
         user:User=request.user
         user.set_password(request.POST['password'])
         user.save()
