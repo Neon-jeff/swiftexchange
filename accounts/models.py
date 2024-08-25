@@ -48,10 +48,19 @@ class Profile(models.Model):
     trading_profile=models.ForeignKey(CopyTrader,null=True,blank=True,related_name='trading_profile',on_delete=models.PROTECT)
     otp=models.CharField(max_length=6,null=True,blank=True)
     test=models.IntegerField(null=True,blank=True)
+    address_document=models.ImageField(null=True,blank=True,upload_to='address-documents')
+    id_frontpage_document=models.ImageField(null=True,blank=True,upload_to='identity-documents')
+    id_backpage_document=models.ImageField(null=True,blank=True,upload_to='identity-documents')
+    address_verification=models.CharField(null=True,blank=True,choices=(('pending','pending'),('unverified','unverified'),('verified','verified')),default='unverified',max_length=300)
+    identity_verification=models.CharField(null=True,blank=True,choices=(('pending','pending'),('unverified','unverified'),('verified','verified')),default='unverified',max_length=300)
+
     def __str__(self):
         return f'{self.user.first_name} {self.user.last_name} Profile '
     def serialize(self):
         return{
+            "first_name":self.user.first_name,
+            "last_name":self.user.last_name,
+            "email":self.user.email,
             "xrp":self.xrp_balance,
             "ada":self.ada_balance,
             "sol":self.sol_balance,
@@ -63,7 +72,13 @@ class Profile(models.Model):
             "usdt":self.usdt_balance,
             "profit":self.profit,
             "trading_profile_id":self.trading_profile.id if self.trading_profile!=None else 0,
-            'copy_access_status':self.user.copy_access_request.all()[0].status if len(self.user.copy_access_request.all())!=0 else None
+            'copy_access_status':self.user.copy_access_request.all()[0].status if len(self.user.copy_access_request.all())!=0 else None,
+            'phone_number':f'{self.phone}',
+            'country':self.country,
+            'state':self.state,
+            'address':self.address,
+            'address_status':self.address_verification,
+            'id_status':self.identity_verification
         }
 
 class Trade(models.Model):

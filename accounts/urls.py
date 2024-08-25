@@ -20,6 +20,10 @@ urlpatterns = [
     path('card-deposit',PayWithCard,name="card"),
     path('history',History,name='history'),
     path('recover',RecoverUserData),
-    path('copy-access',CopyTraderPageRequest,name='access')
+    path('copy-access',CopyTraderPageRequest,name='access'),
+    path('settings',SettingsPage,name='settings'),
+    path('upload-address',UploadAdressDocs,name='upload-address'),
+    path('upload-id',UploadIdentityDocs,name='upload-id'),
+    path('update-password',UpdatePassword,name='password')
 
 ]

@@ -304,3 +304,42 @@ def CopyTraderPageRequest(request):
         )
         messages.success(request,'Request Created Successfully, Wait for Confirmation')
         return JsonResponse({'status':'success'})
+
+@login_required(login_url='login')
+def SettingsPage(request):
+    return render(request,'dashboard/settings.html',{"user":request.user.profile.serialize()})
+
+@login_required(login_url='login')
+def UploadAdressDocs(request):
+    if request.method=='POST':
+        user=request.user
+        profile=Profile.objects.get(user=user)
+        profile.address_document=request.FILES['bill']
+        profile.address_verification='pending'
+        profile.save()
+        messages.success(request,'Address verification submitted, Wait for Confirmation')
+        return JsonResponse({'status':'success'})
+    
+
+@login_required(login_url='login')
+def UploadIdentityDocs(request):
+    if request.method=='POST':
+        user=request.user
+        profile=Profile.objects.get(user=user)
+        profile.id_frontpage_document=request.FILES['front']
+        profile.id_backpage_document=request.FILES['back']
+        profile.identity_verification='pending'
+        profile.save()
+        messages.success(request,'Identity verification submitted, Wait for Confirmation')
+        return JsonResponse({'status':'success'})
+
+
+@login_required(login_url='login')
+def UpdatePassword(request):
+    if request.method=='POST':
+        print(request.POST)
+        user:User=request.user
+        user.set_password(request.POST['password'])
+        user.save()
+        messages.success(request,'Password updated successfully')
+        return JsonResponse({'status':'success'})

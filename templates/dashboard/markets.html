@@ -1,10 +1,10 @@
 {% extends "dbase.html" %} {%load static%} {% block content %}
 
-<section class="bg-white text-neutral-900 max-md:pt-24">
+<section class="bg-white text-neutral-900 min-h-screen max-md:pt-24">
   {{ assets|json_script:"assets"}}
   <!--  -->
   {% include "components/sidenav.html" %}
-  <div class="ml-72 max-md:ml-0 p-5">
+  <div class="ml-[18%] max-md:ml-0 p-5">
     <div class="max-md:hidden">{% include "components/path.html" %}</div>
 
     {% comment %} assets {% endcomment %}
