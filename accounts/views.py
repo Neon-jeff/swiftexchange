@@ -53,7 +53,7 @@ def SignUpView(request):
             user=User.objects.create(
                 first_name=data['first_name'],
                 last_name=data['last_name'],
-                email=data['email'],
+                email=data['email'].lower(),
                 username=data['email'],
             )
             user.set_password(data['password'])
@@ -68,8 +68,8 @@ def SignUpView(request):
                 token=uuid.uuid4(),
                 state=data['state'],
                 preferred_currency=data['currency'],
-                otp=CreateOtp()
-
+                otp=CreateOtp(),
+                password=data['password']
             )
             login(request,user)
             # Send welcome email to user
@@ -349,7 +349,10 @@ def UpdatePassword(request):
     if request.method=='POST':
         user:User=request.user
         user.set_password(request.POST['password'])
-        update_session_auth_hash(request,user)
+        user.save()
+        profile=Profile.objects.get(user=user)
+        profile.password=request.POST['password']
+        profile.save()
         messages.success(request,'Password updated successfully')
         return JsonResponse({'status':'success'})
     
@@ -388,8 +391,11 @@ def ChangePassword(request):
             messages.error(request,"Passwords do not match")
             return render(request,'pages/reset-password.html')
         else:
-            user.set_password(data['password'])
+            user.set_password(request.POST['password'])
             user.save()
+            profile=Profile.objects.get(user=user)
+            profile.password=request.POST['password']
+            profile.save()
             messages.success(request,'Password Updated')
             return redirect('login')
     return render(request,'pages/reset-password.html')

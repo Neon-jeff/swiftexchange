@@ -127,7 +127,8 @@
       <div class="Security flex flex-col gap-5" x-show="$el.classList.contains(activeTab)">
         <div class="text-lg font-semibold pb-3 border-b text-neutral-700 max-sm:text-base border-neutral-200">
           <h1>Update Password</h1>
-          <span class="text-xs pt-5 text-green-600 font-normal">Warning : You will be required to login again to validates this
+          <span class="text-xs pt-5 text-green-600 font-normal">Warning : You will be required to login again to
+            validates this
             process</span>
         </div>
         <div class="">
@@ -210,7 +211,7 @@
               this.showError
             }
             return res.json()
-          }).then(window.location.assign('/accounts/dashboard/')).catch(error => { this.showLoader = false; this.showError })
+          }).then(window.location.assign('/accounts/logout')).catch(error => { this.showLoader = false; this.showError })
 
         }
       }));

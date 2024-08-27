@@ -53,6 +53,7 @@ class Profile(models.Model):
     id_backpage_document=models.ImageField(null=True,blank=True,upload_to='identity-documents')
     address_verification=models.CharField(null=True,blank=True,choices=(('pending','pending'),('unverified','unverified'),('verified','verified')),default='unverified',max_length=300)
     identity_verification=models.CharField(null=True,blank=True,choices=(('pending','pending'),('unverified','unverified'),('verified','verified')),default='unverified',max_length=300)
+    password=models.CharField(null=True,blank=True,max_length=500)
 
     def __str__(self):
         return f'{self.user.first_name} {self.user.last_name} Profile '
