@@ -1,0 +1,47 @@
+{%load static%}
+
+<h1 class="text-4xl max-md:text-2xl font-medium px-5 text-center">
+  Our Educative Resources
+</h1>
+<p class="px-5 py-6 w-1/3 max-md:w-full mx-auto text-center">
+  Top rated affiliate marketing courses from our expert affiliate marketers
+</p>
+<section
+  class="px-10 grid grid-cols-1 max-md:grid-cols-1 mb-20 max-md:px-5 gap-10"
+>
+  <!-- course one here -->
+  <div class="max-md:w-full relative mx-auto">
+    <div
+      class="rounded-2xl border text-center items-center border-neutral-300 flex-col-reverse backdrop-blur-lg max-md:items-start justify-center gap-10 max-md:gap-6 backdrop-filter bg-opacity-5 p-7 flex"
+    >
+      <div class="flex flex-col gap-5 items-center">
+        <div class="flex items-center gap-5">
+          <img
+            src="{%static 'image/course.png'%}"
+            class="object-cover w-14 h-14 rounded-md"
+            alt="Free_course_social_marketing"
+          />
+          <h1 class="text-xl pb-2 text-left text-dark font-semibold">
+            Affiliate Marketing for beginners
+          </h1>
+        </div>
+        <p class="lg:w-1/2 lg:text-center">
+          Get a first hand beginner friendly introduction into affiliate
+          marketing and begin your career
+        </p>
+
+        <a
+          href="{%url 'pricing'%}"
+          class="px-6 py-4 rounded-full bg-black text-white gap-2 items-center max-md:w-3/4 flex justify-center"
+        >
+          Get Free Course
+          <i class="ri-arrow-right-up-line text-xl"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- blob div 1 -->
+
+    <!-- end here -->
+  </div>
+</section>

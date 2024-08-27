@@ -1,0 +1,126 @@
+<section class="my-16 flex justify-center items-center">
+  <div class="w-2/5 max-md:w-4/5 mt-24 max-sm:mt-7 flex flex-col items-center">
+    <h1 class="text-3xl pb-2 font-medium" @click="toggle()">
+      Create your account
+    </h1>
+    <p class="pb-8">
+      Already registered?
+      <a href='{%url "login"%}' class="text-main">Login to your account</a>
+    </p>
+
+    <form
+      class="text-sm max-md:text-sm w-full lg:w-4/5 flex flex-col regForm"
+      @submit="signUp"
+    >
+      {%csrf_token%}
+      <div class="flex flex-col gap-2">
+        <span
+          class="flex items-center relative w-full has-[:focus]:mt-7 has-[:valid]:mt-7"
+        >
+          <input
+            type="email"
+            name="email"
+            id="email"
+            class="border-[1px] p-4 w-full border-dark valid:text-main peer outline-none focus:border-main bg-transparent rounded-lg"
+            required
+          />
+          <span
+            class="left-2 peer-valid:text-main peer-focus:text-main absolute peer-focus:left-0 peer-focus:-translate-y-12 peer-valid:-translate-y-12 flex items-center gap-2 transition duration-150 ease-in peer-valid:left-0"
+          >
+            <ion-icon name="mail-outline" class="text-xl"></ion-icon>
+            Email
+          </span>
+        </span>
+      </div>
+      <div class="flex flex-col gap-2 my-6">
+        <span
+          class="flex items-center relative w-full has-[:focus]:mt-7 has-[:valid]:mt-7"
+        >
+          <input
+            type="text"
+            name="first_name"
+            id="fname"
+            class="border-[1px] p-4 w-full border-dark valid:text-main peer outline-none focus:border-main bg-transparent rounded-lg"
+            required
+          />
+          <span
+            class="left-2 peer-valid:text-main peer-focus:text-main absolute peer-focus:left-0 peer-focus:-translate-y-12 peer-valid:-translate-y-12 flex items-center gap-2 transition duration-150 ease-in peer-valid:left-0"
+          >
+            <ion-icon name="person-outline" class="text-xl"></ion-icon>
+            First Name
+          </span>
+        </span>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <span
+          class="flex items-center relative w-full has-[:focus]:mt-7 has-[:valid]:mt-7"
+        >
+          <input
+            type="text"
+            name="last_name"
+            id="lname"
+            class="border-[1px] p-4 w-full border-dark valid:text-main peer outline-none focus:border-main bg-transparent rounded-lg"
+            required
+          />
+          <span
+            class="left-2 peer-valid:text-main peer-focus:text-main absolute peer-focus:left-0 peer-focus:-translate-y-12 peer-valid:-translate-y-12 flex items-center gap-2 transition duration-150 ease-in peer-valid:left-0"
+          >
+            <ion-icon name="person-outline" class="text-xl"></ion-icon>
+            Last Name
+          </span>
+        </span>
+      </div>
+
+      <div class="flex flex-col gap-2 my-6">
+        <span
+          class="flex items-center relative w-full has-[:focus]:mt-7 has-[:valid]:mt-7"
+        >
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="border-[1px] p-4 w-full border-dark valid:text-main peer outline-none focus:border-main bg-transparent rounded-lg"
+            required
+          />
+          <span
+            class="left-2 peer-valid:text-main peer-focus:text-main absolute peer-focus:left-0 peer-focus:-translate-y-12 peer-valid:-translate-y-12 flex items-center gap-2 transition duration-150 ease-in peer-valid:left-0"
+          >
+            <ion-icon name="lock-closed-outline" class="text-xl"></ion-icon>
+            Password
+          </span>
+          <ion-icon
+            class="absolute toggle right-5 text-xl"
+            name="eye"
+          ></ion-icon>
+        </span>
+      </div>
+
+      <button
+        type="submit"
+        class="p-5 bg-black my-3 text-white font-[300] rounded-full"
+      >
+        Sign Up
+      </button>
+      <!-- <p class="text-center">Or</p>
+      <button
+        class="p-5 my-3 border-[1px] flex items-center gap-2 justify-center text-black border-black font-[300] rounded-full"
+      >
+        <ion-icon name="logo-google" class="text-xl text-orange-600"></ion-icon>
+        Sign in with Google
+      </button> -->
+    </form>
+  </div>
+
+  <script>
+    let passwordField = document.querySelector("input[type=password]");
+    let toggleType = document.querySelector(".toggle");
+    toggleType.addEventListener("click", () => {
+      if (passwordField.type == "password") {
+        passwordField.type = "text";
+      } else {
+        passwordField.type = "password";
+      }
+    });
+  </script>
+</section>

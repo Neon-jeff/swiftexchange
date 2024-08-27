@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,resolve_url
 from .handlers import FetchCoinData,Forex_Currencies,StockData
 from django.http import JsonResponse
 from .models import *
@@ -14,7 +14,8 @@ from django.conf import settings
 from .wallets import wallet_address,deposit_address
 from .otp import CreateOtp
 from .decorators import ensure_email_verified
-
+from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth import update_session_auth_hash
 # Create your views here.
 
 def LoginView(request):
@@ -203,6 +204,7 @@ def DepositFunds(request):
             currency=data['currency'],
             # proof=image
         )
+        messages.success(request,"Deposit request successful, wait for confirmation")
         return JsonResponse({"status":"success"},safe=False,status=200)
     return render(request,'dashboard/deposit.html',{"wallets":deposit_address,"deposits":user_deposits})
 
@@ -216,8 +218,8 @@ def Withdraw(request):
             currency=data['currency'],
             address=data['address']
         )
+        messages.success(request,"Withdrawal request successful, wait for confirmation")
         return JsonResponse({"status":"success"},safe=False,status=200)
-
     return render(request,'dashboard/withdraw.html',{"wallets":wallet_address,'user':request.user.profile.serialize()})
 
 @login_required(login_url='login')
@@ -244,15 +246,23 @@ def CopyTrades(request):
     return render(request,"dashboard/copy.html",{"user":request.user.profile.serialize(),"experts":experts_dict})
 
 
+
+@login_required(login_url='login')
 def SelectMethod(request):
     return render(request,"dashboard/select-method.html",{"user":request.user.profile.serialize()})
 
+
+@login_required(login_url='login')
 def PayWithBank(request):
     return render(request,"dashboard/deposit-bank.html",{"user":request.user.profile.serialize()})
 
+
+@login_required(login_url='login')
 def PayWithCard(request):
     return render(request,"dashboard/deposit-card.html",{"user":request.user.profile.serialize()})
 
+
+@login_required(login_url='login')
 def History(request):
     withdrawals=[
         {
@@ -339,6 +349,47 @@ def UpdatePassword(request):
     if request.method=='POST':
         user:User=request.user
         user.set_password(request.POST['password'])
-        user.save()
+        update_session_auth_hash(request,user)
         messages.success(request,'Password updated successfully')
         return JsonResponse({'status':'success'})
+    
+
+def ForgotPasswordSendOtp(request):
+    if request.method=='POST':
+        try:
+            user=User.objects.get(email=request.POST['email'])
+            user.profile.otp=CreateOtp()
+            user.profile.save()
+            SendResetPasswordEmail(user,user.profile.otp)
+            messages.success(request,'Password reset otp sent')
+            return redirect(resolve_url('verify-identity') + f'?email={user.email}')
+        except ObjectDoesNotExist:
+            messages.error(request,'Account with email does not exist')
+            return render(request,'pages/forgot-password.html')
+    return render(request,'pages/forgot-password.html')
+
+def VerifyIdentity(request):
+    email=request.GET['email']
+    user=User.objects.get(email=email)
+    if request.method=='POST':
+        if request.POST['otp']==user.profile.otp:
+            messages.success(request,'Identity Verified,Update Your Password')
+            return redirect(resolve_url('change-password') + f'?email={user.email}')
+        else:
+            messages.error(request,'Invalid OTP')
+            return render(request,'pages/password-otp-confirm.html')
+    return render(request,'pages/password-otp-confirm.html')
+
+def ChangePassword(request):
+    user=User.objects.get(email=request.GET['email'])
+    if request.method=='POST':
+        data=request.POST
+        if data['password'] !=data['confirm']:
+            messages.error(request,"Passwords do not match")
+            return render(request,'pages/reset-password.html')
+        else:
+            user.set_password(data['password'])
+            user.save()
+            messages.success(request,'Password Updated')
+            return redirect('login')
+    return render(request,'pages/reset-password.html')

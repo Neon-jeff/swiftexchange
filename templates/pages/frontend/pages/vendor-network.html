@@ -1,0 +1,70 @@
+{% extends "bases/base.html" %} {% block content %}
+
+<section class="min-h-screen px-10 max-md:px-2 text-sm font-normal my-20">
+  <!-- hero -->
+  <div class="mx-auto text-center flex flex-col items-center gap-5">
+    <span
+      class="rounded-full border border-neutral-200 bg-neutral-50 p-2 text-neutral-400 px-4"
+      >Connect your products to customers swiftly</span
+    >
+    <h1 class="text-5xl max-md:text-4xl font-semibold">Vendors Network</h1>
+    <p class="w-1/2 max-md:w-full">
+      You are one step away from globally accessing your customers from anywhere
+      in the word
+    </p>
+
+    <div class="flex gap-16 mt-10 max-md:gap-5 max-md:mt-0">
+      <img
+        src="https://images.pexels.com/photos/4467860/pexels-photo-4467860.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        alt=""
+        class="rounded-3xl translate-y-10 max h-[500px] max-md:h-56 object-cover"
+      />
+      <img
+        src="https://images.pexels.com/photos/7279327/pexels-photo-7279327.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+        alt=""
+        class="rounded-3xl h-[500px] object-cover max-md:h-56"
+      />
+    </div>
+  </div>
+  <!-- how it works -->
+  <div
+    class="flex flex-col items-center gap-8 mt-20 text-sm bg-gray-50 max-md:py-10 p-20 max-md:px-5 rounded-md h-1/2"
+  >
+    <div class="self-start">
+      <h1 class="text-3xl font-semibold max-md:text-2xl pb-2">How it Works</h1>
+      <p>Join Our vendor network and start making your sales</p>
+    </div>
+    <div
+      class="flex text-start justify-center gap-5 max-md:gap-10 items-center max-sm:flex-wrap"
+    >
+      <p class="flex flex-col gap-2 border border-gray-200 p-5 rounded-md">
+        <span class="text-lg font-semibold">Step 1</span>
+        <span
+          >Create your account with a valid email and make your
+          subscription</span
+        >
+      </p>
+      <p class="flex flex-col gap-2 border border-gray-200 p-5 rounded-md">
+        <span class="text-lg font-semibold">Step 2</span>
+        <span
+          >Upload valid products, our team will mail you the steps for
+          verification</span
+        >
+      </p>
+      <p class="flex flex-col gap-2 border border-gray-200 p-5 rounded-md">
+        <span class="text-lg font-semibold">Step 3</span>
+        <span
+          >enjoy your lead generation being automated from our registered, close
+          your sales swiftly</span
+        >
+      </p>
+    </div>
+    <a
+      href="{%url 'register'%}"
+      class="p-5 rounded-full bg-dark text-lg w-1/2 text-center max-md:w-full self-center mt-5 hover:scale-95 transition duration-100 ease-out text-white block"
+      >Start Selling Now</a
+    >
+  </div>
+</section>
+
+{% endblock content %}

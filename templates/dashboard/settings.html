@@ -125,9 +125,11 @@
       <!-- verification ends -->
       <!-- secuirty starts -->
       <div class="Security flex flex-col gap-5" x-show="$el.classList.contains(activeTab)">
-        <h1 class="text-lg font-semibold pb-3 border-b text-neutral-700 max-sm:text-base border-neutral-200">
-          Update Password
-        </h1>
+        <div class="text-lg font-semibold pb-3 border-b text-neutral-700 max-sm:text-base border-neutral-200">
+          <h1>Update Password</h1>
+          <span class="text-xs pt-5 text-green-600 font-normal">Warning : You will be required to login again to validates this
+            process</span>
+        </div>
         <div class="">
           <form action="" method="post" class="flex flex-col gap-5 updatePassword" @submit="updatePassword">
             {%csrf_token%}
@@ -208,7 +210,7 @@
               this.showError
             }
             return res.json()
-          }).then(window.location.reload()).catch(error => { this.showLoader = false; this.showError })
+          }).then(window.location.assign('/accounts/dashboard/')).catch(error => { this.showLoader = false; this.showError })
 
         }
       }));

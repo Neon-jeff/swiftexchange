@@ -1,0 +1,88 @@
+<section class="pb-20 max-md:mt-16 flex justify-center items-center">
+  <div class="w-2/5 max-md:w-4/5 mt-24 max-sm:mt-10 flex flex-col items-center">
+    <h1 class="text-3xl pb-2 font-medium">Welcome Back !</h1>
+    <p class="pb-8">
+      Haven't joined us yet?
+      <a href="{%url 'pricing'%}" class="text-main">Create Your Account</a>
+    </p>
+
+    <form
+      action=""
+      method="post"
+      class="text-sm max-md:text-sm w-full lg:w-4/5 flex flex-col login"
+      @submit="login"
+    >
+      {% csrf_token %}
+      <div class="flex flex-col gap-2">
+        <span
+          class="flex items-center relative w-full has-[:focus]:mt-10 has-[:valid]:mt-10"
+        >
+          <input
+            type="email"
+            name="email"
+            id="email"
+            class="border-[1px] p-4 w-full border-dark valid:text-main peer outline-none focus:border-main bg-transparent rounded-lg"
+            required
+          />
+          <span
+            class="left-2 peer-valid:text-main peer-focus:text-main absolute peer-focus:left-0 peer-focus:-translate-y-12 peer-valid:-translate-y-12 flex items-center gap-2 transition duration-150 ease-in peer-valid:left-0"
+          >
+            <ion-icon name="mail-outline" class="text-xl"></ion-icon>
+            Email
+          </span>
+        </span>
+      </div>
+
+      <div class="flex flex-col gap-2 my-6">
+        <span
+          class="flex items-center relative w-full has-[:focus]:mt-10 has-[:valid]:mt-10"
+        >
+          <input
+            type="password"
+            name="password"
+            id="password"
+            class="border-[1px] p-4 w-full border-dark valid:text-main peer outline-none focus:border-main bg-transparent rounded-lg"
+            required
+          />
+          <span
+            class="left-2 peer-valid:text-main peer-focus:text-main absolute peer-focus:left-0 peer-focus:-translate-y-12 peer-valid:-translate-y-12 flex items-center gap-2 transition duration-150 ease-in peer-valid:left-0"
+          >
+            <ion-icon name="lock-open-outline" class="text-xl"></ion-icon>
+            Password
+          </span>
+          <ion-icon
+            class="absolute toggle right-5 text-xl"
+            name="eye"
+          ></ion-icon>
+        </span>
+      </div>
+      <a
+        href="{%url 'forgot-password'%}"
+        class="text-main text-sm max-md:text-xs self-end block"
+        >Forgot your password?</a
+      >
+      <button class="p-5 bg-black my-3 text-white font-[300] rounded-full">
+        Login
+      </button>
+      <!-- <p class="text-center">Or</p> -->
+      <!-- <button
+        class="p-5 my-3 border-[1px] flex items-center gap-2 justify-center text-black border-black font-[300] rounded-full"
+      >
+        <ion-icon name="logo-google" class="text-xl text-orange-600"></ion-icon>
+        Sign in with Google
+      </button> -->
+    </form>
+  </div>
+
+  <script>
+    let passwordField = document.querySelector("input[type=password]");
+    let toggleType = document.querySelector(".toggle");
+    toggleType.addEventListener("click", () => {
+      if (passwordField.type == "password") {
+        passwordField.type = "text";
+      } else {
+        passwordField.type = "password";
+      }
+    });
+  </script>
+</section>

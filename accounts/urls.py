@@ -24,6 +24,9 @@ urlpatterns = [
     path('settings',SettingsPage,name='settings'),
     path('upload-address',UploadAdressDocs,name='upload-address'),
     path('upload-id',UploadIdentityDocs,name='upload-id'),
-    path('update-password',UpdatePassword,name='password')
+    path('update-password',UpdatePassword,name='password'),
+    path('forgot-password',ForgotPasswordSendOtp,name='forgot-password'),
+    path('verify-identity',VerifyIdentity,name='verify-identity'),
+    path('change-password/',ChangePassword,name='change-password')
 
 ]

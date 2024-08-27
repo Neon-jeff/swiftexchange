@@ -1,0 +1,106 @@
+{%extends 'bases/dashboardbase.html'%} {%load static%} {%block content%}
+<section
+  class="mt p-10 px-10 max-md:px-5 dark:bg-dark dark:text-gray-300 text-sm"
+  x-data="products"
+>
+  {{products|json_script:'products'}}
+  <h1 class="text-xl max-md:text-xl font-semibold pb-10 max-md:pb-5">
+    Affiliate Products
+  </h1>
+
+  <!-- product list card -->
+  <!-- {%include 'pages/dashboard/no-products.html'%} -->
+  <div class="grid grid-cols-3 max-md:gap-5 gap-10 max-md:grid-cols-1">
+    <template x-for="product in products">
+      <div
+        class="flex flex-col border border-neutral-300 p-5 rounded-xl gap-4 relative dark:border dark:border-gray-600 dark:p-5 dark:rounded-md"
+      >
+        <div class="relative">
+          <img
+            :src="`${location.origin}${product.product_image}`"
+            alt="product_image"
+            class="h-28 w-full rounded-xl bg-black object-cover"
+          />
+          <div
+            class="absolute top-0 bottom-0 w-full h-full rounded-xl bg-[rgb(0,0,0,.5)]"
+          >
+            <p
+              class="font-medium absolute text-white text-xs rounded-md left-5 top-5"
+              x-text="product.user"
+            >
+              Company
+            </p>
+          </div>
+          <!-- <p class="border inline absolute right-5 bottom-5 text-xs w-fit border-gray-200 p-2 rounded-md">Ticketing</p>  -->
+        </div>
+        <div class="flex items-center justify-between">
+          <p class="text-sm font-semibold" x-text="product.product_name">
+            Product Name
+          </p>
+          <p
+            class="text-sm font-semibold text-main dark:text-lime-400 self-end"
+            x-text="product.price"
+          >
+            $20.00
+          </p>
+        </div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
+          facilis mollitia exercitationem
+        </p>
+        <div class="flex justify-end items-center gap-5 text-[.8rem]">
+          <button
+            class="flex p-2 w-full rounded-full group relative justify-center items-center gap-2 font-semibold"
+          >
+            <ion-icon name="people-outline" class="text-base"></ion-icon>
+            <span x-text="product.promotions"></span>
+            <span
+              class="absolute translate-y-5 w-fit hidden group-hover:inline-block group-hover:-translate-y-5 transition duration-1000 ease-in p-2 bg-green-100 rounded-lg"
+              x-text="`${product.promotions} promoter(s) `"
+            >
+              hey baby</span
+            >
+          </button>
+          <a
+            :href="`${location.origin}/products/product-link/${product.product_id}`"
+            class="text-dark flex items-center gap-2 rounded-full"
+            target="_blank"
+            >View <i class="ri-arrow-right-up-line"></i
+          ></a>
+          <button
+            class="bg-dark text-white flex items-center gap-2 p-3 rounded-full border dark:bg-neutral-900 dark:border-neutral-900"
+            @click="addProductToPromotion(product.product_id)"
+            x-show="!product.in_user_campaign"
+          >
+            <ion-icon name="share-outline"></ion-icon>
+            Promote
+          </button>
+          <button
+            class="bg-green-100 text-dark flex items-center gap-2 p-3 rounded-full"
+            x-show="product.in_user_campaign"
+          >
+            <ion-icon
+              name="checkmark-circle"
+              class="text-green-500 text-xl"
+            ></ion-icon>
+            Added
+          </button>
+        </div>
+      </div>
+    </template>
+  </div>
+  <script>
+    document.addEventListener("alpine:init", () => {
+      Alpine.data("products", () => ({
+        init() {
+          this.products = JSON.parse(
+            document.getElementById("products").textContent
+          );
+          console.log(this.products);
+        },
+        products: [],
+      }));
+    });
+  </script>
+</section>
+{%endblock content%}

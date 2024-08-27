@@ -1,0 +1,36 @@
+<div
+  x-cloak
+  x-transition
+  x-transition.duration.500ms
+  x-show="showMobileNav"
+  class="bg-gray-50 backdrop-filter backdrop-blur-2xl bg-opacity-65 text-neutral-900 justify-center text-sm py-16 gap-5 md:hidden fixed flex flex-col w-4/5 h-screen z-[2] top-0 left-0 p-5"
+>
+  <a href="{%url 'home'%}">Home</a>
+  <a href="{%url 'vendor'%} ">Vendors</a>
+  <a href="{%url 'home'%}">Courses</a>
+  <a href="{%url 'affiliate'%}">Affiliate Network</a>
+  <a href="{%url 'pricing'%}">Pricing</a>
+
+  <div class="flex flex-col my-5 gap-3">
+    <a
+      href="{%url 'pricing'%}"
+      class="bg-dark flex justify-center items-center gap-2 max-md:w-4/5 text-white p-3 lg:px-10 max-md:text-sm max-md:font-normal rounded-full"
+      >Register
+      <i class="ri-arrow-right-up-line text-xl"></i>
+    </a>
+    <a
+      href="{%url 'login'%}"
+      class="border border-dark flex justify-center items-center gap-2 max-md:w-4/5 text-dark p-3 lg:px-10 max-md:text-sm max-md:font-normal rounded-full"
+      >Login
+    </a>
+  </div>
+  <hr />
+  <span class="text-neutral-500">Kettle Well Pro</span>
+  <a
+    href="mailto:admin.support@kettlewellpro.com"
+    class="text-main flex items-center gap-2"
+  >
+    <ion-icon name="mail-unread" class="text-2xl"></ion-icon>
+    Contact Us
+  </a>
+</div>

@@ -2,10 +2,7 @@
 <!--  -->
 {% block content%}
 
-<main
-  class="py-10 bg-dark flex min-h-screen justify-center items-center text-base"
-  x-data="form"
->
+<main class="py-10 bg-dark flex min-h-screen justify-center items-center text-base" x-data="form">
   {%include "components/alerts.html"%}
   <!--  -->
   {% include "components/loader.html" %}
@@ -14,16 +11,16 @@
   <!--  -->
   {{countries|json_script:'countries'}}
   <section class="w-full relative">
-    <form
-      action=""
-      @submit="signUp"
+    <form action="" @submit="signUp"
       class="w-2/5 [&_input]:border [&_input]:border-neutral-500 [&_input]:placeholder:text-xs text-sm max-md:w-11/12 flex flex-col gap-6 p-10 max-md:p-5 mx-auto shadow-sm rounded-md z-50 text-gray-400"
-      autocomplete="off"
-    >
+      autocomplete="off">
       {% csrf_token %}
-      <a href="/" class="self-center flex flex-col items-center">
+      <a href="/" class="self-center flex flex-col  text-main items-center mb-6">
         {%include 'components/logo.html'%}
+        Innovative Trading Signals
+        <!-- <p class="text-sm text-black font-semibold text-center">Rog Trades</p> -->
       </a>
+
       <h1 class="text-2xl text-center font-medium text-white">
         Create Account
       </h1>

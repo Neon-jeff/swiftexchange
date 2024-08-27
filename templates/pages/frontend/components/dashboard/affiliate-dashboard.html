@@ -1,0 +1,126 @@
+{%load static%}
+<section
+  class="p-10 px-10 max-md:px-5 dark:bg-dark"
+  x-show="user.account_type=='affiliate'"
+  x-data="promotions"
+>
+  {{promotions|json_script:'promotions'}}
+  <!-- balance card -->
+  <div class="flex gap-10 max-md:flex-col max-md:gap-5">
+    <div class="w-full">
+      <!-- location -->
+      <!-- <span
+      class="p-3 cursor-pointer px-10 rounded-full text-xs bg-gray-100 mb-5 inline-block text-dark"
+      >Dashboard</span
+    > -->
+      <!-- intro text -->
+
+      <div
+        class="rounded-2xl w-1/2 max-md:w-full flex flex-col gap-3 dark:bg-main"
+      >
+        <span
+          class="flex gap-2 text-2xl max-md:text-xl font-semibold items-center"
+          x-text="'Welcome ' + user.last_name"
+        >
+          <!-- user profile picture -->
+          <!-- <img
+            src="{%static 'image/rating2.png'%}"
+            class="h-12 w-12 object-cover rounded-full bg-white"
+            alt=""
+          /> -->
+        </span>
+        <!-- <div class="bg-neutral-100 p-3 rounded-xl flex flex-col gap-2">
+         
+          <span class="flex items-center gap-2 text-xs text-neutral-500">
+            <ion-icon name="copy-outline" class="font-light text-lg"></ion-icon>
+            www.rampearn</span
+          >
+        </div> -->
+      </div>
+      <!-- balance summary -->
+      <!-- products analytics -->
+
+      <!-- the main grid of three items -->
+      <div
+        class="grid grid-cols-3 max-md:grid-cols-2 mt-5 relative max-md:gap-3 gap-10 *:dark:text-gray-300 *:dark:border-none *:dark:bg-neutral-900"
+      >
+        <!-- sales -->
+        <span
+          class="text-2xl max-md:col-span-2 bg-cyan-50 text-black font-semibold flex flex-col gap-2 max-md:gap-1 p-5 rounded-md"
+        >
+          <span
+            class="text-xs max-md:text-xs max-md:w-full rounded-lg font-normal"
+          >
+            Affiliate Balance
+          </span>
+          <span
+            class="dark:text-lime-500 text-lg"
+            x-text="`$${user.affiliate_balance}.00`"
+          ></span>
+          <span class="text-xs font-semibold dark:text-gray-300 text-main"
+            >+0(0%)</span
+          >
+        </span>
+
+        <!-- performance -->
+
+        <!-- product -->
+        <span
+          class="text-2xl text-black font-semibold flex flex-col gap-2 p-5 rounded-md"
+        >
+          <span
+            class="text-xs max-md:text-xs max-md:w-full rounded-lg font-normal"
+          >
+            Total Views
+          </span>
+          <span class="dark:text-orange-500 text-lg">0</span>
+          <span class="text-xs dark:text-gray-300 font-semibold text-main"
+            >+(0)</span
+          >
+        </span>
+
+        <span
+          class="text-2xl text-black font-semibold flex flex-col gap-2 p-5 rounded-md"
+        >
+          <span
+            class="text-xs max-md:text-xs max-md:w-full rounded-lg font-normal"
+          >
+            Total Campaigns
+          </span>
+          <span class="dark:text-orange-500 text-lg">0</span>
+          <span class="text-xs dark:text-gray-300 font-semibold text-main"
+            >+(0)</span
+          >
+        </span>
+      </div>
+    </div>
+    <!-- side profile details -->
+    <div class="w-2/5 max-md:w-full dark:bg-neutral-900 dark:text-gray-200">
+      <div class="border border-blue-200 p-5 rounded-2xl">
+        Analytics
+        <div id="chart"></div>
+      </div>
+    </div>
+  </div>
+  <!-- my products -->
+  {%include 'components/dashboard/recent-products.html'%}
+  <script>
+    document.addEventListener("alpine:init", () => {
+      Alpine.data("promotions", () => ({
+        init() {
+          this.promotions = JSON.parse(
+            document.getElementById("promotions").textContent
+          );
+        },
+        promotions: [],
+        async copy(el, promotion_id) {
+          await navigator.clipboard.writeText(promotion_id);
+          el.children[1].textContent = "Copied";
+          setTimeout(() => {
+            el.children[1].textContent = "Share";
+          }, 2000);
+        },
+      }));
+    });
+  </script>
+</section>

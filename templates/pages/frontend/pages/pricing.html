@@ -1,0 +1,400 @@
+{%extends 'bases/base.html'%} {%block content%}
+
+<div
+  class="sm:flex sm:flex-col sm:align-center sm:items-center p-5 mt-16 lg:pt-20 w-full text-base"
+  x-data="{vendor:true}"
+>
+  <div
+    class="text-xs self-center mx-auto bg-gray-200 rounded-full p-2 justify-center flex w-fit"
+  >
+    <button
+      type="button"
+      class="relative rounded-full p-2 px-4 text-sm font-medium whitespace-nowrap focus:outline-none sm:w-auto sm:px-8 text-slate-900"
+      :class="vendor?'bg-slate-50':''"
+      @click="vendor=true"
+    >
+      Vendors
+    </button>
+    <button
+      type="button"
+      class="relative rounded-full p-2 px-4 text-sm font-medium whitespace-nowrap focus:outline-none sm:w-auto sm:px-8 text-slate-900"
+      :class="!vendor?'bg-slate-50':''"
+      @click="vendor=false"
+    >
+      Affiliate Marketers
+    </button>
+  </div>
+  <div
+    x-transition
+    x-transition.duration.500ms
+    x-cloak
+    x-show="!vendor"
+    class="mt-12 space-y-3 sm:mt-8 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-6 md:max-w-5xl md:mx-auto xl:grid-cols-3"
+  >
+    <div
+      class="border border-slate-200 rounded-lg shadow-sm divide-y divide-slate-200"
+    >
+      <div class="p-6">
+        <h2 class="text-xl leading-6 font-bold text-slate-900">Starter</h2>
+        <p class="mt-2 text-base text-slate-700 leading-tight">
+          Explore our dashboard, earn a free course
+        </p>
+        <p class="mt-8">
+          <span class="text-4xl font-bold text-slate-900 tracking-tighter"
+            >$500</span
+          >
+
+          <span class="text-base font-medium text-slate-500">/mo</span>
+        </p>
+        <a
+          href="{%url 'register'%}"
+          class="mt-8 block w-full bg-slate-900 rounded-full py-4 text-sm font-semibold text-white text-center"
+          >Join as a Starter</a
+        >
+      </div>
+      <div class="pt-6 pb-8 px-6">
+        <h3 class="text-base font-bold text-slate-900 tracking-wide uppercase">
+          What's included
+        </h3>
+        <ul role="list" class="mt-4 space-y-3">
+          <li class="flex space-x-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="flex-shrink-0 h-5 w-5 text-green-400"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M5 12l5 5l10 -10"></path>
+            </svg>
+            <span class="text-base text-slate-700">Dashboard Access</span>
+          </li>
+          <li class="flex space-x-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="flex-shrink-0 h-5 w-5 text-green-400"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M5 12l5 5l10 -10"></path>
+            </svg>
+            <span class="text-base text-slate-700">One Free Course</span>
+          </li>
+          <li class="flex space-x-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="flex-shrink-0 h-5 w-5 text-green-400"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M5 12l5 5l10 -10"></path>
+            </svg>
+            <span class="text-base text-slate-700"
+              >Join Superior Affiliate Campaign</span
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div
+      class="border border-slate-200 rounded-lg shadow-sm divide-y divide-slate-200"
+    >
+      <div class="p-6">
+        <h2 class="text-xl leading-6 font-bold text-slate-900">Pro</h2>
+        <p class="mt-2 text-base text-slate-700 leading-tight">
+          Budget friendly plan for affiliate to work on their own pace
+        </p>
+        <p class="mt-8">
+          <span class="text-4xl font-bold text-slate-900 tracking-tighter"
+            >$2500</span
+          >
+
+          <span class="text-base font-medium text-slate-500">/mo</span>
+        </p>
+        <a
+          href="{%url 'register'%}"
+          class="mt-8 block w-full bg-slate-900 rounded-full py-4 text-sm font-semibold text-white text-center"
+          >Join as a Pro Affiliate</a
+        >
+      </div>
+      <div class="pt-6 pb-8 px-6">
+        <h3 class="text-base font-bold text-slate-900 tracking-wide uppercase">
+          What's included
+        </h3>
+        <ul role="list" class="mt-4 space-y-3">
+          <li class="flex space-x-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="flex-shrink-0 h-5 w-5 text-green-400"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M5 12l5 5l10 -10"></path>
+            </svg>
+            <span class="text-base text-slate-700">All Free features</span>
+          </li>
+          <li class="flex space-x-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="flex-shrink-0 h-5 w-5 text-green-400"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M5 12l5 5l10 -10"></path>
+            </svg>
+            <span class="text-base text-slate-700"
+              >15 Monthly Promotion Campaign</span
+            >
+          </li>
+          <li class="flex space-x-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="flex-shrink-0 h-5 w-5 text-green-400"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M5 12l5 5l10 -10"></path>
+            </svg>
+            <span class="text-base text-slate-700">20 link view /Day</span>
+          </li>
+          <li class="flex space-x-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="flex-shrink-0 h-5 w-5 text-green-400"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M5 12l5 5l10 -10"></path>
+            </svg>
+            <span class="text-base text-slate-700">$500 maximum payout</span>
+          </li>
+          <li class="flex space-x-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="flex-shrink-0 h-5 w-5 text-green-400"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M5 12l5 5l10 -10"></path>
+            </svg>
+            <span class="text-base text-slate-700">$2000 maximum balance</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- last account type -->
+    <div
+      class="border border-slate-200 rounded-lg shadow-sm divide-y mb-10 divide-slate-200"
+    >
+      <div class="p-6">
+        <h2 class="text-xl leading-6 font-bold text-slate-900">Superior</h2>
+        <p class="mt-2 text-base text-slate-700 leading-tight">
+          For fulltime affiliate marketers with impeccable promotion skills
+        </p>
+        <p class="mt-8">
+          <span class="text-4xl font-bold text-slate-900 tracking-tighter"
+            >$5000</span
+          >
+
+          <span class="text-base font-medium text-slate-500">/mo</span>
+        </p>
+        <a
+          href="{%url 'register'%}"
+          class="mt-8 block w-full bg-slate-900 rounded-full py-4 text-sm font-semibold text-white text-center"
+          >Join as a Superior Affiliate</a
+        >
+      </div>
+      <div class="pt-6 pb-8 px-6">
+        <h3 class="text-base font-bold text-slate-900 tracking-wide uppercase">
+          What's included
+        </h3>
+        <ul role="list" class="mt-4 space-y-3">
+          <li class="flex space-x-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="flex-shrink-0 h-5 w-5 text-green-400"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M5 12l5 5l10 -10"></path>
+            </svg>
+            <span class="text-base text-slate-700">All Free features</span>
+          </li>
+          <li class="flex space-x-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="flex-shrink-0 h-5 w-5 text-green-400"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M5 12l5 5l10 -10"></path>
+            </svg>
+            <span class="text-base text-slate-700"
+              >35 Monthly Promotion Campaign</span
+            >
+          </li>
+          <li class="flex space-x-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="flex-shrink-0 h-5 w-5 text-green-400"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M5 12l5 5l10 -10"></path>
+            </svg>
+            <span class="text-base text-slate-700">60 link views /Day</span>
+          </li>
+          <li class="flex space-x-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="flex-shrink-0 h-5 w-5 text-green-400"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M5 12l5 5l10 -10"></path>
+            </svg>
+            <span class="text-base text-slate-700">$1000 maximum payout</span>
+          </li>
+          <li class="flex space-x-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="flex-shrink-0 h-5 w-5 text-green-400"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M5 12l5 5l10 -10"></path>
+            </svg>
+            <span class="text-base text-slate-700"
+              >Create Campaign Downlines</span
+            >
+          </li>
+          <li class="flex space-x-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="flex-shrink-0 h-5 w-5 text-green-400"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M5 12l5 5l10 -10"></path>
+            </svg>
+            <span class="text-base text-slate-700">$4000 maximum balance</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  {%include 'components/homepage/vendor-pricing.html'%}
+</div>
+
+{%endblock%}
