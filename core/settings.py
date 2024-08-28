@@ -187,7 +187,7 @@ CSRF_TRUSTED_ORIGINS=[
 
 # UNFOLD CONFIGS
 UNFOLD={
-    "SITE_TITLE":"ROG ADMIN",
+    "SITE_TITLE":"ADMIN SITE",
     "SITE_HEADER":"BROKER ADMIN",
     "SIDE_BAR":{
         'show_all_applications':True
