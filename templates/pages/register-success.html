@@ -1,12 +1,8 @@
 {% extends "base.html" %} {% block content %}
 
-<section
-  class="h-[100vh]  text-sm max-md:px-10 flex text-gray-300 justify-center items-center"
->
-    {% include "components/alerts.html" %}
-  <section
-    class="border border-slate-800  flex flex-col gap-2 items-center w-1/2 max-md:w-full p-10 rounded-md"
-  >
+<section class="h-[100vh]  text-sm max-md:px-10 flex text-gray-300 justify-center items-center">
+  {% include "components/alerts.html" %}
+  <section class="border border-slate-800  flex flex-col gap-2 items-center w-1/2 max-md:w-full p-10 rounded-md">
     <!-- verify icon success -->
     <!-- <lord-icon
       src="https://cdn.lordicon.com/rvmukzut.json"
@@ -25,31 +21,31 @@
       >
         100%
       </div> -->
-      <a href="/" class="self-center flex flex-col items-center">
-        {%include 'components/logo.html'%}
-        <p class="text-sm text-white font-semibold text-center">Rog Trades</p>
-      </a>
-      <h1 class=" text-xl font-medium mt-10  flex items-end gap-2">
-     Verify Your Email
-      </h1>
-      <p class="text-xs text-slate-400">enter the 6 digit otp sent to your inbox</p>
-      <input type="text" inputmode="numeric" class="border border-neutral-300 mt-5 placeholder:text-sm rounded-md p-3 bg-transparent" placeholder="enter 6 digit OTP">
-      
-      <p class="mt-5">Didn't get your otp? <a href="{%url 'resend'%}" class="text-main font-medium">Resend OTP</a></p>
+    <a href="/" class=" flex flex-col  text-main  mb-10 text-xs">
+      {%include 'components/logo.html'%}
+      Innovative Trading Signals
+    </a>
+    <h1 class=" text-xl font-medium mt-10  flex items-end gap-2">
+      Verify Your Email
+    </h1>
+    <p class="text-xs text-slate-400">enter the 6 digit otp sent to your inbox</p>
+    <input type="text" inputmode="numeric"
+      class="border border-neutral-300 mt-5 placeholder:text-sm rounded-md p-3 bg-transparent"
+      placeholder="enter 6 digit OTP">
+
+    <p class="mt-5">Didn't get your otp? <a href="{%url 'resend'%}" class="text-main font-medium">Resend OTP</a></p>
     </div>
 
     <div class=" mt-10 flex gap-2 items-center flex-col">
-      <a href="" class="bg-main text-black p-3 px-5 rounded-full otp"
-        >Verify Email</a
-      >
-       <!-- <span>Done Verifying?</span> -->
+      <a href="" class="bg-main text-black p-3 px-5 rounded-full otp">Verify Email</a>
+      <!-- <span>Done Verifying?</span> -->
     </div>
   </section>
   <script>
-    let input=document.querySelector('input')
-    let link=document.querySelector('.otp')
-    input.addEventListener('input',(e)=>{
-      link.href=`?otp=${e.target.value}`
+    let input = document.querySelector('input')
+    let link = document.querySelector('.otp')
+    input.addEventListener('input', (e) => {
+      link.href = `?otp=${e.target.value}`
     })
   </script>
 </section>
