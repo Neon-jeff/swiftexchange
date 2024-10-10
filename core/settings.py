@@ -181,8 +181,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # COMPRESSOR CONFIGS
 
 CSRF_TRUSTED_ORIGINS=[
-   'https://rog-trades.up.railway.app',
-   'https://www.innovativetradingsignals.com'
+   "https://swiftexchange.up.railway.app"
 ]
 
 # UNFOLD CONFIGS
