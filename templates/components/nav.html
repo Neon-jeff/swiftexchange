@@ -1,27 +1,32 @@
 <nav
-  class="w-full z-40 flex px-5 items-center justify-center max-md:justify-end py-10 absolute top-0 left-0 bg-transparent text-neutral-300 font-light text-sm"
+  class="w-full z-40 flex px-5 items-center pt-5  gap-20 absolute top-0 left-0 bg-transparent text-neutral-800 font-normal text-sm"
   x-data="{open:false}">
   <!--  -->
   <a href="/"
-    class="absolute flex  max-md:flex-col max-md:items-start max-sm:scale-75 text-xs items-center text-main  left-5 max-sm:left-2 ">
+    class="absolut flex  max-md:flex-col gap-4 max-md:gap-1 max-md:items-start  text-sm items-center text-yellow-600   ">
     {%include 'components/logo.html'%}
     <!--  -->
-    <span>Innovative Trading Signals</span></a>
+    <span class="text-xs font-semibold">Swift Exchange</span></a>
   <ul class="flex justify-center items-center gap-10 max-md:hidden">
     <a href="{%url 'home'%}" class="hover:text-main transition duration-150 ease-in">Home</a>
     <a href="{%url 'market'%}" class="hover:text-main transition duration-150 ease-in">Markets</a>
     <a href="{%url 'about'%}" class="hover:text-main transition duration-150 ease-in">About
     </a>
     <a href="{%url 'expert'%}" class="hover:text-main transition duration-150 ease-in">Expert Trading</a>
+    <a href="{%url 'expert'%}" class="hover:text-main transition duration-150 ease-in">FAQs</a>
   </ul>
   <!-- login and contact -->
-  <ul class="flex gap-10 absolute right-10 max-md:hidden items-center">
-    <a href="{%url 'login'%}"
-      class="transition duration-150 ease-in p-3 px-5 bg-neutral-700 text-sm text-white rounded-full">Enter
-      dashboard</a>
+   <div class="relative"><div class="gtranslate_wrapper" id="google-translate" ></div></div>
+  <ul class="flex gap-5 absolute right-10  max-md:hidden items-center">
+    
+    <a href="{%url 'sign-up'%}"
+      class="transition duration-150 ease-in p-3 px-5 border-main  text-sm text-dark rounded-full">Create Account</a>
+      <a href="{%url 'login'%}"
+      class="transition duration-150 ease-in p-3 px-5 bg-main text-sm text-dark rounded-full">
+      Dashboard</a>
   </ul>
   {% comment %} nav toggle {% endcomment %}
-  <section class="text-3xl py-6 px-5 absolute top-0 md:hidden w-full">
+  <section class="text-3xl py-6 px-5 right-2 absolute top-0 md:hidden w-full">
     <div class="flex justify-end items-center">
       <span @click="open=!open" class="text-4xl"><ion-icon name="menu-outline"></ion-icon></span>
     </div>

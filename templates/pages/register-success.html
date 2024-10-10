@@ -1,8 +1,8 @@
 {% extends "base.html" %} {% block content %}
 
-<section class="h-[100vh]  text-sm max-md:px-10 flex text-gray-300 justify-center items-center">
+<section class="h-[100vh]  text-sm max-md:px-10 flex text-dark justify-center items-center">
   {% include "components/alerts.html" %}
-  <section class="border border-slate-800  flex flex-col gap-2 items-center w-1/2 max-md:w-full p-10 rounded-md">
+  <section class=" bg-neutral-50 flex flex-col gap-2 items-center w-1/2 max-md:w-full p-10 rounded-md">
     <!-- verify icon success -->
     <!-- <lord-icon
       src="https://cdn.lordicon.com/rvmukzut.json"
@@ -21,23 +21,23 @@
       >
         100%
       </div> -->
-    <a href="/" class=" flex flex-col  text-main  mb-10 text-xs">
+    <a href="/" class=" flex flex-col  text-dark items-center  mb-10 text-xs">
       {%include 'components/logo.html'%}
-      Innovative Trading Signals
+      Swift Exchange
     </a>
-    <h1 class=" text-xl font-medium mt-10  flex items-end gap-2">
+    <h1 class=" text-2xl font-semibold mt-10  flex items-end gap-2">
       Verify Your Email
     </h1>
-    <p class="text-xs text-slate-400">enter the 6 digit otp sent to your inbox</p>
+    <p class="text-xs text-slate-600">enter the 6 digit otp sent to your inbox</p>
     <input type="text" inputmode="numeric"
-      class="border border-neutral-300 mt-5 placeholder:text-sm rounded-md p-3 bg-transparent"
+      class="border border-neutral-400 mt-5 placeholder:text-sm rounded-md p-3 bg-transparent"
       placeholder="enter 6 digit OTP">
 
-    <p class="mt-5">Didn't get your otp? <a href="{%url 'resend'%}" class="text-main font-medium">Resend OTP</a></p>
+    <p class="mt-5">Didn't get your otp? <a href="{%url 'resend'%}" class="text-yellow-700 font-medium">Resend OTP</a></p>
     </div>
 
     <div class=" mt-10 flex gap-2 items-center flex-col">
-      <a href="" class="bg-main text-black p-3 px-5 rounded-full otp">Verify Email</a>
+      <a href="" class="bg-main text-black p-3 px-5 w-full block rounded-full otp">Verify Email</a>
       <!-- <span>Done Verifying?</span> -->
     </div>
   </section>

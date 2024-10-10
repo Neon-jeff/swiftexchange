@@ -26,15 +26,15 @@
       <div
         class="bg-white w-fit mb-10 flex gap-5 *:cursor-pointer *:py-3 *:px-5 *:rounded-full *:text-xs *:max-sm:text-xs rounded-md">
         <button class="" @click="setActiveTab($el)"
-          :class="activeTab==$el.textContent.trim()?'bg-main text-white font-semibold':'bg-green-100'">
+          :class="activeTab==$el.textContent.trim()?'bg-main text-dark font-semibold':'bg-green-100'">
           Account
         </button>
         <button @click="setActiveTab($el)"
-          :class="activeTab==$el.textContent.trim()?'bg-main text-white font-semibold':'bg-green-100'">
+          :class="activeTab==$el.textContent.trim()?'bg-main text-dark font-semibold':'bg-green-100'">
           Verification
         </button>
         <button @click="setActiveTab($el)"
-          :class="activeTab==$el.textContent.trim()?'bg-main text-white font-semibold':'bg-green-100'">
+          :class="activeTab==$el.textContent.trim()?'bg-main text-dark font-semibold':'bg-green-100'">
           Security
         </button>
       </div>
@@ -48,7 +48,7 @@
         <div class="flex flex-col gap-5">
           <div class="flex items-center gap-3">
             <span x-text="user.first_name[0]"
-              class="w-10 h-10 flex justify-center items-center rounded-full bg-dark text-white"></span>
+              class="w-10 h-10 flex justify-center items-center rounded-full bg-dark text-dark"></span>
             <span x-text="user.first_name + ' ' + user.last_name" class="font-semibold"></span>
           </div>
           <div class="flex flex-col gap-5">
@@ -103,7 +103,7 @@
                 class="ri-checkbox-circle-fill"></i>Completed
             </span>
             <button x-show="user.id_status=='unverified'" @click="showUploadID=true"
-              class="px-3 py-2 text-xs rounded-md bg-dark text-white w-fit">Verifiy Identity</button>
+              class="px-3 py-2 text-xs rounded-md bg-dark text-dark w-fit">Verifiy Identity</button>
           </div>
           <div class="flex flex-col gap-2 border-b border-neutral-200 pb-3">
             <span class="font-medium text-neutral-600">Address Verification</span>
@@ -117,7 +117,7 @@
                 class="ri-checkbox-circle-fill"></i>Completed
             </span>
             <button x-show="user.address_status=='unverified'" @click="showUploadBill=true"
-              class="px-3 py-2 text-xs rounded-md bg-dark text-white w-fit">Verifiy Address</button>
+              class="px-3 py-2 text-xs rounded-md bg-dark text-dark w-fit">Verifiy Address</button>
           </div>
         </div>
         <!-- profile details end -->
@@ -155,7 +155,7 @@
               </span>
             </div>
 
-            <button class="px-5 py-3 bg-dark text-white rounded-md w-fit">Update Password</button>
+            <button class="px-5 py-3 bg-dark text-dark rounded-md w-fit">Update Password</button>
           </form>
         </div>
       </div>

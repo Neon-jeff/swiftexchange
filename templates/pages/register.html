@@ -2,7 +2,7 @@
 <!--  -->
 {% block content%}
 
-<main class="py-10 bg-dark flex min-h-screen justify-center items-center text-base" x-data="form">
+<main class="py-10 bg-white flex min-h-screen justify-center items-center text-base" x-data="form">
   {%include "components/alerts.html"%}
   <!--  -->
   {% include "components/loader.html" %}
@@ -11,23 +11,23 @@
   <!--  -->
   {{countries|json_script:'countries'}}
   <section class="w-full relative">
+    <!-- toggle links -->
+
     <form action="" @submit="signUp"
-      class="w-2/5 [&_input]:border [&_input]:border-neutral-500 [&_input]:placeholder:text-xs text-sm max-md:w-11/12 flex flex-col gap-6 p-10 max-md:p-5 mx-auto shadow-sm rounded-md z-50 text-gray-400"
+      class="w-2/5 [&_input]:border [&_input]:border-neutral-500 [&_input]:placeholder:text-xs text-sm max-md:w-11/12 flex flex-col gap-6 p-10 max-md:p-5 mx-auto shadow-sm rounded-md z-50 text-dark"
       autocomplete="off">
       {% csrf_token %}
-      <a href="/" class="self-center flex flex-col  text-main items-center mb-6">
+      <a href="/" class="self-center flex flex-col  text-dark items-center mb-6">
         {%include 'components/logo.html'%}
-        Innovative Trading Signals
+        Swift Exchange
         <!-- <p class="text-sm text-black font-semibold text-center">Rog Trades</p> -->
       </a>
 
-      <h1 class="text-2xl text-center font-medium text-white">
-        Create Account
-      </h1>
-      <p class="text-gray-500 text-center">
-        Already Registered?
-        <a href="{%url 'login'%}" class="text-blue-400">Sign In</a>
-      </p>
+      <div class="border border-neutral-200 p-1 rounded-md flex gap-2 text-center font-semibold">
+        <a href="" class="bg-main w-1/2 p-3 rounded-md">Create Account</a>
+        <a href="{%url 'login'%}"  class="bg-neutral-100 text-neutral-600 w-1/2 p-3 rounded-md">Login </a>
+      </div>
+
       <!-- personal Details -->
       {%include 'pages/register-steps/step1.html' %}
       <!--  -->
