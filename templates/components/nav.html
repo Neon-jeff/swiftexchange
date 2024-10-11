@@ -34,19 +34,19 @@
 
   {% comment %} mobile nav {% endcomment %}
   <section x-cloak
-    class="fixed bg-dark text-base z-50 h-screen text-neutral-300 top-0 right-0 left-0 w-screen p-10 pt-10 md:hidden"
+    class="fixed bg-neutral-200 bg-opacity-70 rounded-tr-xl rounded-br-xl text-xl backdrop-blur-md backdrop-filter  z-50 h-screen text-dark top-0 right-0 left-0 w-4/5 p-10 px-5 pt-10 md:hidden"
     x-show="open" x-transition x-transition.duration.500ms>
     <div class="flex justify-end mb-20">
-      <span class="text-xl" style="font-size: 35px" span @click="open=!open"><ion-icon
+      <span class="text-xl text-neutral-600 p-2 rounded-full bg-neutral-200" style="font-size: 35px" span @click="open=!open"><ion-icon
           name="close-outline"></ion-icon></span>
     </div>
     <ul class="flex flex-col gap-2">
       <a href="{%url 'home'%}"
         class="hover:bg-main p-3 rounded-md hover:scale-105 transition duration-100 ease-in flex gap-3 items-center"><ion-icon
           name="home-outline" class="text-2xl"></ion-icon>Home</a>
-      <a href="{%url 'login'%}"
+      <a href="{%url 'sign-up'%}"
         class="hover:bg-main p-3 rounded-md hover:scale-105 transition duration-100 ease-in flex gap-3 items-center"><ion-icon
-          name="log-in-outline" class="text-2xl"></ion-icon>Login</a>
+          name="log-in-outline" class="text-2xl"></ion-icon>Create Account</a>
       <!-- <a href="{%url 'sign-up'%}" class='hover:bg-main p-3 rounded-md hover:scale-105 transition duration-100 ease-in flex gap-3 items-center '><ion-icon name="analytics-outline" class='text-2xl'></ion-icon>Get Started</a> -->
       <a href="{%url 'about'%}"
         class="hover:bg-main p-3 rounded-md hover:scale-105 transition duration-100 ease-in flex gap-3 items-center"><ion-icon
@@ -62,10 +62,22 @@
       <a href="" class="hover:bg-main p-3 rounded-md hover:scale-105 transition duration-100 ease-in">Signals</a>
       <a href="" class="hover:bg-main p-3 rounded-md hover:scale-105 transition duration-100 ease-in">Copy Experts</a>
       {% endcomment %}
-      <a href="mailto:support@innovativetradingsignals.com"
-        class="p-3 rounded-md hover:scale-105 transition duration-100 ease-in text-main flex items-center gap-3">
-        <ion-icon name="mail-unread-outline" class="text-2xl"></ion-icon>Contact
-        Us</a>
+ 
+
+        <div class="flex flex-col gap-5 mt-20">
+          <a href="mailto:support@innovativetradingsignals.com"
+          class="p-3 rounded-full hover:scale-105 transition duration-100 ease-in text-black bg-neutral-300 flex items-center justify-between jus gap-3">
+          Contact
+          Us
+          <ion-icon name="mail-unread-outline" class="text-2xl"></ion-icon></a>
+          <a href="{%url 'login'%}"
+          class="transition duration-150  ease-in p-3 px-5 bg-main flex items-center justify-between text-dark rounded-full">
+          Dashboard
+          <i
+          class="ri-arrow-right-up-line"></i>
+        </a>
+        
+        </div>
     </ul>
   </section>
 </nav>
