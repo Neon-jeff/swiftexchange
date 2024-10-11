@@ -36,8 +36,9 @@
   <section x-cloak
     class="fixed bg-neutral-200 bg-opacity-70 rounded-tr-xl rounded-br-xl text-xl backdrop-blur-md backdrop-filter  z-50 h-screen text-dark top-0 right-0 left-0 w-4/5 p-10 px-5 pt-10 md:hidden"
     x-show="open" x-transition x-transition.duration.500ms>
-    <div class="flex justify-end mb-20">
-      <span class="text-xl text-neutral-600 p-2 rounded-full bg-neutral-200" style="font-size: 35px" span @click="open=!open"><ion-icon
+    <div class="flex justify-between items-center mb-20">
+      {%include 'components/logo.html'%}
+      <span class="text-xl text-neutral-600 h-10 w-10 flex items-center justify-center rounded-full bg-neutral-200" style="font-size: 25px" span @click="open=!open"><ion-icon
           name="close-outline"></ion-icon></span>
     </div>
     <ul class="flex flex-col gap-2">
