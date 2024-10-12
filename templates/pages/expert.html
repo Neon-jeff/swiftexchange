@@ -1,13 +1,13 @@
 {% extends "base.html" %} {%load static%} {% block content %}
 <!-- inculde nav -->
 {% include "components/nav.html" %}
-<main class="bg-dark text-sm text-neutral-300 flex flex-col items-center">
+<main class="bg-white text-sm pb-10 text-neutral-800 flex flex-col items-center">
   <section
     class="pt-52 text-center flex flex-col gap-2 max-md:h-full px-5 pb-20 max-md:w-full relative z-[1]"
   >
-    <div class="flex gap-10 w-full flex-col items-center text-neutral-300">
+    <div class="flex gap-10 w-full flex-col items-center text-neutral-800">
       <div class="z-50">
-        <h1 class="text-5xl text-white pb-5 max-md:text-4xl font-semibold z-10">
+        <h1 class="text-5xl text-dark pb-5 max-md:text-4xl font-semibold z-10">
           Expert Trading
         </h1>
         <p class="pb-2 text-sm z-10">
@@ -17,7 +17,7 @@
         <div class="pt-2 flex justify-center z-50">
           <a
             href="{%url 'sign-up'%}"
-            class="bg-main text-white p-3 px-10 rounded-full hover:-translate-y-2 mx-2 transition duration-150 ease-in"
+            class="bg-main text-dark p-3 px-10 rounded-full hover:-translate-y-2 mx-2 transition duration-150 ease-in"
             >Get Started</a
           >
         </div>
@@ -25,22 +25,22 @@
     </div>
   </section>
   {% comment %} main content {% endcomment %}
-  <section class="w-full text-neutral-200 p-20 max-md:px-5 flex flex-col">
+  <section class="w-3/5 max-md:w-full p-10 mx-auto rounded-2xl bg-neutral-100 max-md:px-5 flex flex-col">
     <div>
       <h1 class="text-2xl max-md:text-xl font-medium">
         What is Expert Trading
       </h1>
-      <p class="text-main text-sm font-medium pt-2">
+      <p class="text-gray-500 text-sm font-medium pt-2">
         Increase your winning rate
       </p>
-      <p class="pt-6 w-3/4 max-md:w-full">
+      <p class="pt-6 w-full max-md:w-full">
         Expert trading refers to the practice of making informed decisions in
         financial markets based on deep understanding, analysis, and experience.
         Experts utilize their knowledge of market trends, economic indicators,
         and company fundamentals to identify opportunities for buying or selling
         assets such as stocks, currencies, or commodities. They employ advanced
         techniques including technical analysis, fundamental analysis, and risk
-        management strategies to maximize profits and minimize losses. Expert
+        management strategies to maximize profits and minimize losses. <br> <br> Expert
         traders often possess years of experience and continually refine their
         skills through ongoing research and adaptation to market dynamics. Their
         expertise enables them to navigate volatile markets with confidence and
@@ -50,8 +50,8 @@
 
     <div class="mt-10">
       <h1 class="text-3xl max-md:text-3xl font-medium">Next Steps</h1>
-      <p class="text-main text-sm font-medium pt-2">Start Trading Now</p>
-      <p class="pt-4 w-3/4 max-md:w-full">
+      <p class="text-gray-500 text-sm font-medium pt-2">Start Trading Now</p>
+      <p class="pt-4 w-full max-md:w-full">
         Unlock the future of finance with Rog Trades! Experience seamless
         transactions, cutting-edge security, and full control over your digital
         assets. Join our community of innovators embracing decentralized
@@ -61,7 +61,7 @@
       </p>
       <a
         href="{%url 'sign-up'%}"
-        class="bg-main block w-1/5 mt-10 text-center text-black max-md:w-4/5 p-3 px-10 rounded-full hover:-translate-y-2  transition duration-150 ease-in"
+        class="bg-main block w-2/5 mt-10 text-center text-black max-md:w-4/5 p-3 px-10 rounded-full hover:-translate-y-2  transition duration-150 ease-in"
         >Start Trading Now</a
       >
     </div>
