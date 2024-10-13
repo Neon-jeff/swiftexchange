@@ -22,7 +22,7 @@
             {% csrf_token %}
             <div class="border border-neutral-200 p-1 rounded-md flex gap-2 text-center font-semibold">
                 <a href="{%url 'sign-up'%}"  class="bg-neutral-100 text-neutral-600 w-1/2 p-3 rounded-md">Create Account </a>
-                <a href="" class="bg-main w-full p-3 rounded-md flex items-center justify-center gap-5">Login <ion-icon name="chevron-forward-outline"></ion-icon></a>
+                <a href="" class="bg-main w-1/2 p-3 rounded-md ">Login </a>
                
               </div>
         
@@ -43,7 +43,7 @@
             </fieldset>
             <a href="{%url 'forgot-password'%}" class='text-end text-neutral-400 text-xs cursor-pointer'>Forgot Your
                 Password?</a>
-            <button class='bg-main text-dark p-4 rounded-full mt-5  w-1/2 max-md:w-full self-center'>Login</button>
+            <button class='bg-main text-dark p-4 rounded-full mt-5  w-full flex items-center justify-center gap-2  max-md:w-full self-center'>Login <ion-icon name="chevron-forward-outline"></ion-icon></button>
 
         </form>
     </section>
