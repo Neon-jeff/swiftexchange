@@ -43,6 +43,7 @@ class Profile(models.Model):
     ada_balance = models.FloatField(default=0.00, null=True, blank=True)
     eth_balance = models.IntegerField(default=0, null=True, blank=True)
     profit = models.IntegerField(default=0, null=True, blank=True)
+    expert_profit=models.IntegerField(default=0)
     preferred_currency = models.CharField(null=True, blank=True, max_length=30)
     trading_profile = models.ForeignKey(
         CopyTrader,
